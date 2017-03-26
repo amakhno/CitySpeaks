@@ -1,0 +1,34 @@
+﻿@using CitySpeaks_samle.Models
+@model CitySpeaks_samle.Models.UserNewsList
+
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (News news in Model.News)
+{
+    <h3>@news.Name</h3>
+    <div class="row 200%">        
+        <div class="6u 12u$(medium)">
+            @news.Date.ToShortDateString()
+            <br />
+            @news.ShortDescription 
+            <br /> 
+            <br />
+            @Html.ActionLink("Читать", "Show", "News", new { id = news.NewsId }, new { @class = "button" })
+        </div>
+        <div class="6u$ 12u$(medium)">
+            <span class="image fit">
+                <img alt="" src="@Url.Action("GetBigImage", "News",
+                    new { news.NewsId })">
+            </span>
+        </div>        
+    </div>
+    <hr class="major" />
+}
+
+<div>
+    @Html.UserPageLinks(Model.PagingInfo, x => Url.Action("GetNewsList", new { page = x }))
+</div>

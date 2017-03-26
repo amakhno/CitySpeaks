@@ -1,0 +1,92 @@
+﻿<!DOCTYPE HTML>
+<!--
+    Editorial by HTML5 UP
+    html5up.net | ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+
+    @Styles.Render("~/Content/css")
+    <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=7qydmy3d0pbb29e3oynexj81xt6ib9uwt4adl7vycfpvwepy"></script>
+    <script src="~/Scripts/tnymce.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=your_API_key![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Banner -->
+                <section>
+                    <header class="major">
+                        <h2>@ViewBag.Title</h2>
+                    </header>
+                    @RenderBody()  
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li>@Html.ActionLink("Новости", "GetNewsList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Программы", "GetProgramsList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Категории программ", "GetCategoryList", "Admin", null, null)</li>
+                        <li>
+                            <span class="opener">Submenu</span>
+                            <ul>
+                                <li><a href="#">Lorem Dolor</a></li>
+                                <li><a href="#">Ipsum Adipiscing</a></li>
+                                <li><a href="#">Tempus Magna</a></li>
+                                <li><a href="#">Feugiat Veroeros</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Etiam Dolore</a></li>
+                        <li><a href="#">Adipiscing</a></li>
+                        <li>
+                            <span class="opener">Another Submenu</span>
+                            <ul>
+                                <li><a href="#">Lorem Dolor</a></li>
+                                <li><a href="#">Ipsum Adipiscing</a></li>
+                                <li><a href="#">Tempus Magna</a></li>
+                                <li><a href="#">Feugiat Veroeros</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Maximus Erat</a></li>
+                        <li><a href="#">Sapien Mauris</a></li>
+                        <li><a href="#">Amet Lacinia</a></li>
+                    </ul>
+                </nav>        
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/skel.min.js"></script>
+    <script src="~/Scripts/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="~/Scripts/main.js"></script>
+    
+
+</body>
+</html>

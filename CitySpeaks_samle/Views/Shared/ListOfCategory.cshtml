@@ -1,0 +1,6 @@
+﻿@model string[]
+
+@foreach (string a in Model)
+{
+    <li><a href="@Url.Action("GetProgramsList", "Home", new { category = a })">@a</a></li>
+}

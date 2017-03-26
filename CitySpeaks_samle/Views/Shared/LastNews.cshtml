@@ -1,0 +1,25 @@
+﻿@model CitySpeaks_samle.Models.News
+
+@if(Model!=null)
+{ 
+<div class="mini-posts">    
+    <article>
+        <a href="@Url.Action("Show", "News", new { id = Model.NewsId })" class="image">
+            <img src="@Url.Action("GetSmallImage", "News",
+                        new { Model.NewsId })" style ="height:174px"alt="" />
+        </a>
+        <p>@Model.ShortDescription</p>
+    </article>
+</div>
+<ul class="actions">
+    @Html.ActionLink("Читать","Show", "News", new { id = Model.NewsId }, new { @class = "button" })
+</ul>
+}
+else
+{
+    <div class="mini-posts">
+        <article>
+            Пока нет новостей
+        </article>
+    </div>
+}

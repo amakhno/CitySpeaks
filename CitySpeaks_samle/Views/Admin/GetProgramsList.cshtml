@@ -1,0 +1,53 @@
+﻿@using CitySpeaks_samle.Models
+@model CitySpeaks_samle.Models.AdminProgramsList
+
+@{
+    ViewBag.Title = "Список программ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @if (TempData["message"] != null)
+    {
+        @TempData["message"]
+    }
+</p>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Описание</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Programs news in Model.Programs)
+            {
+                <tr>
+                    <td>@news.Name</td>
+                    <td>@Programs.GetCategoryNameByid(news.CategoryId)</td>
+                    <td>@news.ShortDescription.Substring(0, 3)</td>
+                    <td>
+                        <a href="@Url.Action("Show", "Programs", new { id = news.ProgramId })">
+                            <img src="~/Content/Show_Icon.png" style="height:20px" alt="" />
+                        </a>
+                        <a href="@Url.Action("Delete", "Programs", new { id = news.ProgramId })">
+                            <img src="~/Content/Delete_Icon.png" style="height:20px" alt="" />
+                        </a>
+                        <a href="@Url.Action("Edit", "Programs", new { id = news.ProgramId })">
+                            <img src="~/Content/Edit_Icon.png" style="height:20px" alt="" />
+                        </a>
+                    <td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        @Html.AdminPageLinks(Model.PagingInfo, x => Url.Action("GetProgramsList", new { page = x }))
+    </div>
+    @Html.ActionLink("Добавить программу", "Create", "Programs")
+</div>
+

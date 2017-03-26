@@ -1,0 +1,10 @@
+﻿@using CitySpeaks_samle.Models;
+@model List<Programs>
+
+@foreach (Programs prog in Model)
+{
+    <li>
+        @Html.ActionLink(prog.Name, "Show", "Programs", new { id = prog.ProgramId }, null)
+    </li>
+}
+

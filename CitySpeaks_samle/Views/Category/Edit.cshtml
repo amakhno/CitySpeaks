@@ -1,0 +1,25 @@
+﻿@model CitySpeaks_samle.Models.ProgramCategories
+
+@{
+    ViewBag.Title = "Изменение категории";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        @Html.ValidationSummary()
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.CategoryId)
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)  
+                @Html.TextBoxFor(x => x.Name,
+                        new { @class = "form-control" })              
+            </div>            
+    </div>
+    </p>
+    <ul class="actions">
+        <li><input type="submit" value="Сохранить" class="button big" /></li>
+    </ul>
+}
+

@@ -1,0 +1,70 @@
+﻿@model CitySpeaks_samle.Models.Programs
+
+@{
+    ViewBag.Title = "Редактирование новости";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Programs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        @if (TempData["message"] != null)
+        {
+            @TempData["message"]
+        }
+        @Html.ValidationSummary()
+    </p>
+    <div class="panel-body">
+        @Html.HiddenFor(m => m.ProgramId)
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name)
+
+            @Html.TextBoxFor(x => x.Name,
+                        new { @class = "form-control" })
+            @Html.Label("Выберите категорию")
+            @Html.DropDownList("stringCategory", CitySpeaks_samle.Models.Programs.GetListOfCategories())
+            @Html.LabelFor(x => x.ShortDescription)
+            @Html.TextBoxFor(x => x.ShortDescription,
+                        new { @class = "form-control" })
+            @Html.LabelFor(x => x.FullDescription)
+
+            @Html.TextAreaFor(x => x.FullDescription, 5, 200,
+                        new { @class = "form-control", rows = 5 })
+
+        </div>
+
+        <label>Уменьшенное изображение</label>
+        <p><input type="file" name="image1" size="40" id="SmallImage"></p>
+        @if (Model == null || Model.SmallImageData == null)
+        {
+            <div class="form-control-static">Нет картинки</div>
+        }
+        else
+        {
+            <span class="image">
+                <img width="288" height="174"
+                     src="@Url.Action("GetSmallImage", "Programs",
+                        new { Model.ProgramId })" />
+            </span>
+        }
+
+        <label>Увеличенное изображение</label>
+        <p><input type="file" name="image2" size="40" id="SmallImage"></p>
+        @if (Model == null || Model.BigImageData == null)
+        {
+            <div class="form-control-static">Нет картинки</div>
+        }
+        else
+        {
+            <span class="image">
+                <img width="1000" height="416"
+                     src="@Url.Action("GetBigImage", "Programs",
+                        new { Model.ProgramId })" />
+            </span>
+        }
+    </div>
+
+    <ul class="actions">
+        <li><input type="submit" value="Save" class="button big" /></li>
+    </ul>
+}

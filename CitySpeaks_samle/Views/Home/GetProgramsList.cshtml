@@ -1,0 +1,26 @@
+﻿@using CitySpeaks_samle.Models
+@model CitySpeaks_samle.Models.UserProgramsList
+
+@{
+    ViewBag.Title = @Programs.GetCategoryNameByid(@Model.Programs.First().CategoryId);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>   
+    <div class="posts">
+        @foreach (Programs a in Model.Programs)
+            {
+            <article>
+                <a class="image" href="#">
+                    <img alt="" src="@Url.Action("GetSmallImage", "Programs",
+                        new { a.ProgramId })">
+                </a>
+                <h3>@a.Name</h3>
+                <p>@a.ShortDescription</p>
+                <ul class="actions">
+                    <li>@Html.ActionLink("Читать", "Show", "Programs", new { id = a.ProgramId }, new { @class = "button" })</li>
+                </ul>
+            </article>
+        }
+    </div>
+</section>

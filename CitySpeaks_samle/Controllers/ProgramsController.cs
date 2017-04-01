@@ -34,7 +34,7 @@ namespace CitySpeaks_samle.Controllers
 
         // POST: Programs/Create
         [HttpPost]
-        public ActionResult Edit(Programs program, string stringCategory, HttpPostedFileBase image1, HttpPostedFileBase image2)
+        public ActionResult Edit(Programs program, HttpPostedFileBase image1, HttpPostedFileBase image2)
         {
             ApplicationDbContext context = new ApplicationDbContext();
             if (program.ProgramId!=0)
@@ -46,7 +46,7 @@ namespace CitySpeaks_samle.Controllers
                     TempData["message"] = "Не получены изображения";
                     return View(UpdatePrograms);
                 }
-                UpdatePrograms.CategoryId = Programs.GetCategoryByName(stringCategory);
+                UpdatePrograms.CategoryId = Programs.GetCategoryByName(program.Category.Name);
                 if (image1 != null)
                 {
                     UpdatePrograms.SmallImageMimeType = image1.ContentType;
@@ -74,7 +74,9 @@ namespace CitySpeaks_samle.Controllers
                     TempData["message"] = "Не получены изображения";
                     return View(program);
                 }
-                program.CategoryId = Programs.GetCategoryByName(stringCategory);
+                var tmp = Programs.GetCategoryByName(program.Category.Name);
+                program.Category = null;
+                program.CategoryId = tmp;
                 if (image1 != null)
                 {
                     program.SmallImageMimeType = image1.ContentType;
@@ -140,10 +142,10 @@ namespace CitySpeaks_samle.Controllers
         }
 
         // GET: Programs/Delete/5
-        public ActionResult Delete(int programId)
+        public ActionResult Delete(int id)
         {
             ApplicationDbContext context = new ApplicationDbContext();
-            var deletePrograms = context.Programs.Where(c => c.ProgramId == programId).FirstOrDefault();
+            var deletePrograms = context.Programs.Where(c => c.ProgramId == id).FirstOrDefault();
             context.Entry(deletePrograms).State = EntityState.Deleted;
             context.SaveChanges();
             TempData["message"] = string.Format("Программа {0} была удалена", deletePrograms.Name);
@@ -164,6 +166,16 @@ namespace CitySpeaks_samle.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult GetGridPrograms()
+        {
+            List<Programs> model;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                model = context.Programs.Take((context.Programs.Count() >= 6) ? 6 : context.Programs.Count()).ToList();
+            }
+            return View(model);
         }
     }
 }

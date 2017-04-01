@@ -4,6 +4,7 @@ namespace CitySpeaks_samle.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using CitySpeaks_samle.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CitySpeaks_samle.Models.ApplicationDbContext>
     {
@@ -26,6 +27,12 @@ namespace CitySpeaks_samle.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            if (context.Categories.Where(x=>x.CategoryId == 1).Count() != 0)
+            {
+                ProgramCategories category = context.Categories.Where(x => x.CategoryId == 1).First();
+                context.Entry(category).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
     }
 }

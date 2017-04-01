@@ -13,7 +13,19 @@ namespace CitySpeaks_samle.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            MainPage model;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                if(context.MainPage.Count() == 0)
+                {
+                    model = new MainPage();
+                }
+                else
+                {
+                    model = context.MainPage.First();
+                }
+            }
+            return View(model);
         }
 
         //Отображение последней новости
@@ -50,6 +62,13 @@ namespace CitySpeaks_samle.Controllers
                 if (prog.CategoryId == 1)
                     result.Add(prog);
             }
+            return PartialView(result);
+        }
+
+        public ActionResult ListOfWorkers()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            List<Workers> result = context.Workers.ToList();
             return PartialView(result);
         }
 

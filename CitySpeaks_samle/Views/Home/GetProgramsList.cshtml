@@ -2,25 +2,35 @@
 @model CitySpeaks_samle.Models.UserProgramsList
 
 @{
-    ViewBag.Title = @Programs.GetCategoryNameByid(@Model.Programs.First().CategoryId);
+    if (Model.Programs.Count() != 0)
+    {
+        ViewBag.Title = @Programs.GetCategoryNameByid(@Model.Programs.First().CategoryId);
+    }
+    else
+    {
+        ViewBag.Title = "В категории нет элементов";
+    }
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    }
 
 <section>   
     <div class="posts">
-        @foreach (Programs a in Model.Programs)
+        @if (Model.Programs.Count() != 0)
+        {
+            foreach (Programs a in Model.Programs)
             {
-            <article>
-                <a class="image" href="#">
-                    <img alt="" src="@Url.Action("GetSmallImage", "Programs",
+                <article>
+                    <a class="image" href="#">
+                        <img alt="" src="@Url.Action("GetSmallImage", "Programs",
                         new { a.ProgramId })">
-                </a>
-                <h3>@a.Name</h3>
-                <p>@a.ShortDescription</p>
-                <ul class="actions">
-                    <li>@Html.ActionLink("Читать", "Show", "Programs", new { id = a.ProgramId }, new { @class = "button" })</li>
-                </ul>
-            </article>
-        }
+                    </a>
+                    <h3>@a.Name</h3>
+                    <p>@a.ShortDescription</p>
+                    <ul class="actions">
+                        <li>@Html.ActionLink("Читать", "Show", "Programs", new { id = a.ProgramId }, new { @class = "button" })</li>
+                    </ul>
+                </article>
+            }
+        }        
     </div>
 </section>

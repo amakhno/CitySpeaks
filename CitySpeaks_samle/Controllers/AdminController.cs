@@ -15,7 +15,7 @@ namespace CitySpeaks_samle.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Edit", "MainPage", new { id = 1 });
         }
 
         public ViewResult GetNewsList(int page = 1)
@@ -25,7 +25,7 @@ namespace CitySpeaks_samle.Controllers
                 News = (new ApplicationDbContext()).News
                     .OrderByDescending(news => news.Date)
                     .Skip((page - 1) * pageSize)
-                    .Take(pageSize),
+                    .Take(0),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
@@ -34,6 +34,12 @@ namespace CitySpeaks_samle.Controllers
                 }
             };
             return View(model);
+        }
+
+        public ViewResult GetWorkersList()
+        {
+            List<Workers> workers = (new ApplicationDbContext()).Workers.ToList();
+            return View(workers);
         }
 
         public ViewResult GetProgramsList(int page = 1)

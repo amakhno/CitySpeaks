@@ -22,7 +22,7 @@
             @Html.TextBoxFor(x => x.Name,
                         new { @class = "form-control" })
             @Html.Label("Выберите категорию")
-            @Html.DropDownList("stringCategory", CitySpeaks_samle.Models.Programs.GetListOfCategories())
+            @Html.DropDownListFor(x=>x.Category.Name, CitySpeaks_samle.Models.Programs.GetListOfCategories())
             @Html.LabelFor(x => x.ShortDescription)
             @Html.TextBoxFor(x => x.ShortDescription,
                         new { @class = "form-control" })

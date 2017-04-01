@@ -7,13 +7,13 @@ namespace CitySpeaks_samle.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _230320172 : IMigrationMetadata
+    public sealed partial class _010420171 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_230320172));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_010420171));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703230744356_23032017-2"; }
+            get { return "201704010948226_01042017-1"; }
         }
         
         string IMigrationMetadata.Source

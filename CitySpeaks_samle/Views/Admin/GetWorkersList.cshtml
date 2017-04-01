@@ -1,0 +1,45 @@
+﻿@model List<CitySpeaks_samle.Models.Workers>
+
+@{
+    ViewBag.Title = "Список работников";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @if (TempData["message"] != null)
+    {
+        @TempData["message"]
+    }
+</p>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CitySpeaks_samle.Models.Workers workers in Model)
+            {
+                <tr>
+                    <td>@workers.Name</td>
+                    <td>
+                        <a href="@Url.Action("Show", "Workers", new { id = workers.Id })">
+                            <img src="~/Content/Show_Icon.png" style="height:20px" alt="" />
+                        </a>
+                        <a href="@Url.Action("Delete", "Workers", new { id = workers.Id })">
+                            <img src="~/Content/Delete_Icon.png" style="height:20px" alt="" />
+                        </a>
+                        <a href="@Url.Action("Edit", "Workers", new { id = workers.Id })">
+                            <img src="~/Content/Edit_Icon.png" style="height:20px" alt="" />
+                        </a>
+                    <td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Добавить программу", "Create", "Workers")
+</div>
+

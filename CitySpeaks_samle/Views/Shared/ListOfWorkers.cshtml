@@ -1,0 +1,14 @@
+﻿@using CitySpeaks_samle.Models;
+@model List<Workers>
+
+@foreach (Workers worker in Model)
+{
+    <article>
+        <div style="margin-right: 2em"><img src="@Url.Action("GetImage", "Workers",
+                    new { worker.Id })" style="height:10em; border-radius: 0.375em" alt="" /></div>
+        <div class="content">
+            <h3>@worker.Name</h3>
+            <p>@worker.ShortDescription</p>
+        </div>
+    </article>
+}

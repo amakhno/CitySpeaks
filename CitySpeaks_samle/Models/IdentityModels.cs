@@ -21,12 +21,15 @@ namespace CitySpeaks_samle.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HifiContext", throwIfV1Schema: false)
         {
         }
 
         public DbSet<News> News { get; set; }
         public DbSet<Programs> Programs { get; set; }
+        public DbSet<Workers> Workers { get; set; }
+
+        public DbSet<MainPage> MainPage { get; set; }
 
         public DbSet<ProgramCategories> Categories { get; set; }
 

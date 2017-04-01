@@ -6,7 +6,7 @@
     <article>
         <a href="@Url.Action("Show", "News", new { id = Model.NewsId })" class="image">
             <img src="@Url.Action("GetSmallImage", "News",
-                        new { Model.NewsId })" style ="height:174px"alt="" />
+                        new { Model.NewsId })" alt="" />
         </a>
         <p>@Model.ShortDescription</p>
     </article>

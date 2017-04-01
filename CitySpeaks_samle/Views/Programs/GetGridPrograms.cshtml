@@ -1,0 +1,20 @@
+﻿@using CitySpeaks_samle.Models
+
+@model List<Programs>
+
+@{Layout = null; }
+
+@foreach (var a in Model)
+{
+    <article>
+        <a href="#" class="image">
+            <img src=@Url.Action("GetSmallImage", "Programs",
+                        new { a.ProgramId }) alt="" />
+        </a>
+        <h3>@a.Name</h3>
+        <p>@a.ShortDescription</p>
+        <ul class="actions">
+            <li><a href="@Url.Action("Show", "Programs", new { id = a.ProgramId })" class="button">Перейти</a></li>
+        </ul>
+    </article>
+}

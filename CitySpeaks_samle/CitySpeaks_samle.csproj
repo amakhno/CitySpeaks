@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin\AdminCategoryList.cs" />
     <Compile Include="Models\Admin\AdminProgramsList.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\MainPage.cs" />
     <Compile Include="Models\ProgramCategories.cs" />
     <Compile Include="Models\Admin\AdminPagingHelpers.cs" />
@@ -312,13 +314,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout — копия.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\GetNewsList.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
-    <Content Include="Views\Shared\_LayouAdmin.cshtml" />
     <Content Include="Views\News\Show.cshtml" />
     <Content Include="Views\Shared\LastNews.cshtml" />
     <Content Include="Views\Home\GetNewsList.cshtml" />
@@ -336,6 +336,7 @@
     <Content Include="Views\Shared\ListOfWorkers.cshtml" />
     <Content Include="Views\MainPage\Edit.cshtml" />
     <Content Include="Views\Programs\GetGridPrograms.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

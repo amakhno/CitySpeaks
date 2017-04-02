@@ -45,7 +45,10 @@
                 <!-- Menu -->
                 <nav id="menu">
                     <header class="major">
-                        <h2>Menu</h2>
+                        <a style="width:100%" href="@Url.Action("Index", "Home")" class="image">
+                            <img src="@Url.Action("GetLogoImage", "MainPage",
+                        new { newsId = 1 })" alt="" />
+                        </a>
                     </header>
                     <ul>
                         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
@@ -58,7 +61,7 @@
                             </ul>
                             
                         </li>
-                        <li><a href="#">Etiam Dolore</a></li>
+                        <li>@Html.ActionLink("Написать нам", "Index", "Contact")</li>
                         <li><a href="#">Adipiscing</a></li>
                         <li>
                             <span class="opener">Another Submenu</span>

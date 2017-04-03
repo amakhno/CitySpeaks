@@ -16,7 +16,7 @@ namespace CitySpeaks_samle.Controllers
             MainPage model;
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                if(context.MainPage.Count() == 0)
+                if (context.MainPage.Count() == 0)
                 {
                     model = new MainPage();
                 }
@@ -44,10 +44,11 @@ namespace CitySpeaks_samle.Controllers
         {
             ApplicationDbContext context = new ApplicationDbContext();
             List<string> result = new List<string>();
-            foreach(ProgramCategories category in context.Categories)
+            int FindId = Programs.GetCategoryByName("Без категории");
+            foreach (ProgramCategories category in context.Categories)
             {
-                if(category.CategoryId != 1)
-                result.Add(category.Name);
+                if (category.CategoryId != FindId)
+                    result.Add(category.Name);
             }
             return PartialView(result.ToArray());
         }
@@ -56,19 +57,30 @@ namespace CitySpeaks_samle.Controllers
         public ActionResult ListOfUnCategory()
         {
             ApplicationDbContext context = new ApplicationDbContext();
-            List<Programs> result = new List<Programs>();
-            foreach (Programs prog in context.Programs)
+            int FindId = Programs.GetCategoryByName("Без категории");
+            List<Programs> res = new List<Programs>();
+            var db = context.Programs.Where(x=>x.CategoryId == FindId);
+            foreach (var prog in db)
             {
-                if (prog.CategoryId == 1)
-                    result.Add(prog);
+                res.Add(prog);
             }
-            return PartialView(result);
+            return PartialView(res);
         }
 
         public ActionResult ListOfWorkers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
             List<Workers> result = context.Workers.ToList();
+            return PartialView(result);
+        }
+
+        public ActionResult ListOfReview()
+        {
+            List<Review> result;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                result = context.Review.Take(3).ToList();
+            }
             return PartialView(result);
         }
 
@@ -90,11 +102,17 @@ namespace CitySpeaks_samle.Controllers
             return View(model);
         }
 
+        public ViewResult GetReviewList(int page = 1)
+        {
+            var Review = (new ApplicationDbContext()).Review.ToList();
+            return View(Review);
+        }
+
         public ViewResult GetProgramsList(int page = 1, string category = "")
         {
             UserProgramsList model = new UserProgramsList
             {
-                Programs = (new ApplicationDbContext()).Programs.Where(x=>(x.Category.Name == category) || (category == ""))
+                Programs = (new ApplicationDbContext()).Programs.Where(x => (x.Category.Name == category) || (category == ""))
                     .OrderByDescending(news => news.ProgramId)
                     /*.Skip((page - 1) * pageSize)
                     .Take(pageSize)*/,

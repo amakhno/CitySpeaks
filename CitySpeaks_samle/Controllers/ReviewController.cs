@@ -10,31 +10,31 @@ using System.Web.Mvc;
 namespace CitySpeaks_samle.Controllers
 {
     [Authorize]
-    public class WorkersController : Controller
+    public class ReviewController : Controller
     {
-        // GET: News/Create
+        // GET: News/Review
         public ActionResult Create()
         {
-            return View("Edit", new Workers());
+            return View("Edit", new Review());
         }
 
-        // GET: News/Create
+        // GET: News/Review
         [AllowAnonymous]
         public ActionResult Show(int id)
         {
-            Workers news = (new ApplicationDbContext()).Workers.First(x => x.Id == id);
+            Review news = (new ApplicationDbContext()).Review.First(x => x.Id == id);
             return View(news);
         }
 
-        // POST: News/Create
+        // POST: News/Review
         [HttpPost]
-        public ActionResult Edit(Workers worker, HttpPostedFileBase image1)
+        public ActionResult Edit(Review worker, HttpPostedFileBase image1)
         {
 
             ApplicationDbContext context = new ApplicationDbContext();
             if (worker.Id != 0)
             {
-                var UpdateWorker = context.Workers.Where(c => c.Id == worker.Id).FirstOrDefault();
+                var UpdateWorker = context.Review.Where(c => c.Id == worker.Id).FirstOrDefault();
                 if ((image1 == null && UpdateWorker.ImageData == null) || !ModelState.IsValid)
                 {
                     TempData["message"] = "Что-то пошло не так, проверьте ввод еще раз";
@@ -50,8 +50,8 @@ namespace CitySpeaks_samle.Controllers
                 UpdateWorker.ShortDescription = worker.ShortDescription;
                 context.Entry(UpdateWorker).State = EntityState.Modified;
                 context.SaveChanges();
-                TempData["message"] = string.Format("Изменения в данных о работнике \"{0}\" были сохранены", worker.Name);
-                return RedirectToAction("GetWorkersList", "Admin");
+                TempData["message"] = string.Format("Изменения в данных о отзыве \"{0}\" были сохранены", worker.Name);
+                return RedirectToAction("GetReviewList", "Admin");
             }
             else
             {
@@ -62,10 +62,10 @@ namespace CitySpeaks_samle.Controllers
                     image1.InputStream.Read(worker.ImageData, 0, image1.ContentLength);
                 }
                 ApplicationDbContext cnt = new ApplicationDbContext();
-                cnt.Workers.Add(worker);
+                cnt.Review.Add(worker);
                 cnt.SaveChanges();
-                TempData["message"] = string.Format("Работник \"{0}\" был добавлен", worker.Name);
-                return RedirectToAction("GetWorkersList", "Admin");
+                TempData["message"] = string.Format("Отзыв \"{0}\" был добавлен", worker.Name);
+                return RedirectToAction("GetReviewList", "Admin");
             }
         }
 
@@ -73,7 +73,7 @@ namespace CitySpeaks_samle.Controllers
         public FileContentResult GetImage(int Id)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();
-            Workers worker = cnt.Workers
+            Review worker = cnt.Review
                 .FirstOrDefault(g => g.Id == Id);
 
             if (worker != null && worker.ImageData != null)
@@ -93,7 +93,7 @@ namespace CitySpeaks_samle.Controllers
             {
                 return RedirectToAction("Index", "Admin");
             }
-            Workers worker = (new ApplicationDbContext()).Workers.First(x => x.Id == id);
+            Review worker = (new ApplicationDbContext()).Review.First(x => x.Id == id);
             return View(worker);
         }
 
@@ -101,27 +101,11 @@ namespace CitySpeaks_samle.Controllers
         public ActionResult Delete(int id)
         {
             ApplicationDbContext context = new ApplicationDbContext();
-            var deleteNews = context.Workers.Where(c => c.Id == id).FirstOrDefault();
+            var deleteNews = context.Review.Where(c => c.Id == id).FirstOrDefault();
             context.Entry(deleteNews).State = EntityState.Deleted;
             context.SaveChanges();
-            TempData["message"] = string.Format("Данные о работнике {0} были удалены", deleteNews.Name);
-            return RedirectToAction("GetWorkersList", "Admin");
-        }
-
-        // POST: News/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            TempData["message"] = string.Format("Отзыв {0} был удален", deleteNews.Name);
+            return RedirectToAction("GetReviewList", "Admin");
         }
     }
 }

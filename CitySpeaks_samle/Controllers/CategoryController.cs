@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace CitySpeaks_samle.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         // GET: Category
@@ -26,7 +27,10 @@ namespace CitySpeaks_samle.Controllers
         [HttpPost]
         public ActionResult Edit(ProgramCategories category)
         {
-
+            if (category.Name == "Без категории")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             ApplicationDbContext context = new ApplicationDbContext();
             if (category.CategoryId != 0)
             {
@@ -66,11 +70,15 @@ namespace CitySpeaks_samle.Controllers
         }
 
         public ActionResult Delete(int id)
-        {
+        {            
             ApplicationDbContext context = new ApplicationDbContext();
+            if (context.Categories.Where(x=>x.CategoryId == id).First().Name == "Без категории")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             foreach(Programs programs in context.Programs.Where(x=>x.CategoryId == id))
             {
-                programs.CategoryId = 1;
+                programs.CategoryId = Programs.GetCategoryByName("Без категории");
                 context.Entry(programs).State = EntityState.Modified;
             }
             context.Entry(context.Categories.First(x => x.CategoryId == id)).State = EntityState.Deleted;

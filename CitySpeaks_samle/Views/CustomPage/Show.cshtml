@@ -1,0 +1,14 @@
+﻿@model CitySpeaks_samle.Models.CustomPage
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<span class="image main">
+    <img src="@Url.Action("GetBigImage", "CustomPage",
+                        new { Model.Id })" alt="" />
+</span>
+
+@Html.Raw(Model.Page)
+

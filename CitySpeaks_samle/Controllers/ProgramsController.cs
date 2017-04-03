@@ -9,14 +9,10 @@ using System.Web.Mvc;
 
 namespace CitySpeaks_samle.Controllers
 {
+    [Authorize]
     public class ProgramsController : Controller
     {
-        // GET: Programs
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        [AllowAnonymous]
         // GET: Programs/Details/5
         public ActionResult Show(int id = 1)
         {
@@ -97,6 +93,7 @@ namespace CitySpeaks_samle.Controllers
             }     
         }
 
+        [AllowAnonymous]
         public FileContentResult GetBigImage(int programId)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();
@@ -113,6 +110,7 @@ namespace CitySpeaks_samle.Controllers
             }
             }
 
+        [AllowAnonymous]
         public FileContentResult GetSmallImage(int programId)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();
@@ -152,22 +150,7 @@ namespace CitySpeaks_samle.Controllers
             return RedirectToAction("GetProgramsList", "Admin");
         }
 
-        // POST: Programs/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        [AllowAnonymous]
         public ActionResult GetGridPrograms()
         {
             List<Programs> model;

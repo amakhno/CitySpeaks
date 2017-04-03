@@ -15,8 +15,6 @@
     <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=7qydmy3d0pbb29e3oynexj81xt6ib9uwt4adl7vycfpvwepy"></script>
     <script src="~/Scripts/tnymce.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=your_API_key![endif]-->
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 <body>
 
@@ -51,6 +49,9 @@
                         <li>@Html.ActionLink("Программы", "GetProgramsList", "Admin", null, null)</li>
                         <li>@Html.ActionLink("Категории программ", "GetCategoryList", "Admin", null, null)</li>
                         <li>@Html.ActionLink("Работники", "GetWorkersList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Список страниц", "GetCustomPageList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Список отзывов", "GetReviewList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("На главную", "Index", "Home", null, null)</li>
                         <li>
                             <span class="opener">Submenu</span>
                             <ul>
@@ -60,20 +61,6 @@
                                 <li><a href="#">Feugiat Veroeros</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Etiam Dolore</a></li>
-                        <li><a href="#">Adipiscing</a></li>
-                        <li>
-                            <span class="opener">Another Submenu</span>
-                            <ul>
-                                <li><a href="#">Lorem Dolor</a></li>
-                                <li><a href="#">Ipsum Adipiscing</a></li>
-                                <li><a href="#">Tempus Magna</a></li>
-                                <li><a href="#">Feugiat Veroeros</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Maximus Erat</a></li>
-                        <li><a href="#">Sapien Mauris</a></li>
-                        <li><a href="#">Amet Lacinia</a></li>
                     </ul>
                 </nav>        
 
@@ -82,12 +69,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/skel.min.js"></script>
-    <script src="~/Scripts/util.js"></script>
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="~/Scripts/main.js"></script>
-    
-
+    @Scripts.Render("~/bundles/main")
 </body>
 </html>

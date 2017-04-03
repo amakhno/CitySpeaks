@@ -12,6 +12,7 @@
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
     
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/carousel")
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
@@ -30,23 +31,17 @@
                     </header>
                     @RenderBody()
                 </section>
-                
-                
-
             </div>
         </div>
-
-
 
         <!-- Sidebar -->
         <div id="sidebar">
             <div class="inner">
-
                 <!-- Menu -->
                 <nav id="menu">
                     <header class="major">
                         <a style="width:100%" href="@Url.Action("Index", "Home")" class="image">
-                            <img src="@Url.Action("GetLogoImage", "MainPage",
+                            <img style="width:100%" src="@Url.Action("GetLogoImage", "MainPage",
                         new { newsId = 1 })" alt="" />
                         </a>
                     </header>
@@ -54,27 +49,21 @@
                         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                         <li>@Html.ActionLink("Новости", "GetNewsList", "Home")</li>
                         <li>
-                            <span class="opener">Программы</span>
+                            <span class="opener active">Программы</span>
                             <ul>
                                 @Html.Action("ListOfCategory", "Home")
                                 @Html.Action("ListOfUnCategory", "Home")
                             </ul>
-                            
+
                         </li>
-                        <li>@Html.ActionLink("Написать нам", "Index", "Contact")</li>
-                        <li><a href="#">Adipiscing</a></li>
+                        <li>@Html.ActionLink("Отзывы", "GetReviewList", "Home")</li>
                         <li>
-                            <span class="opener">Another Submenu</span>
+                            <span class="opener">О нас</span>
                             <ul>
-                                <li><a href="#">Lorem Dolor</a></li>
-                                <li><a href="#">Ipsum Adipiscing</a></li>
-                                <li><a href="#">Tempus Magna</a></li>
-                                <li><a href="#">Feugiat Veroeros</a></li>
+                                @Html.Action("GetListOfPages", "CustomPage")
                             </ul>
                         </li>
-                        <li><a href="#">Maximus Erat</a></li>
-                        <li><a href="#">Sapien Mauris</a></li>
-                        <li><a href="#">Amet Lacinia</a></li>
+                        <li>@Html.ActionLink("Написать нам", "Index", "Contact")</li>
                     </ul>
                 </nav>
 
@@ -89,15 +78,17 @@
                 <!-- Section -->
                 <section>
                     <header class="major">
-                        <h2>Get in touch</h2>
+                        <h2>Контакты</h2>
                     </header>
-                    <p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
+                    <p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d618.366876878486!2d39.265815229253356!3d51.687889330140145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x413b2f84f555887b%3A0x7ec379572002144b!2z0L_RgNC-0YHQvy4g0JvQtdC90LjQvdGB0LrQuNC5LCAxNTYsINCS0L7RgNC-0L3QtdC2LCDQktC-0YDQvtC90LXQttGB0LrQsNGPINC-0LHQuy4sIDM5NDA2Mw!5e0!3m2!1sru!2sru!4v1491202463792" width="335" height="300" frameborder="0" style="width:100%; border:0" allowfullscreen></iframe>
+                    </p>
                     <ul class="contact">
-                        <li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-                        <li class="fa-phone">+7 (952) 549-0800</li>
+                        <li class="fa-envelope-o">@Html.ActionLink("mail@cityspeaks.ru", "Index", "Contact")</li>
+                        <li class="fa-phone">256-95-02</li>
                         <li class="fa-home">
-                            1234 Somewhere Road #8254<br />
-                            Nashville, TN 00000-0000
+                            Ленинский пр., 156, оф. 307<br />
+                            г. Воронеж
                         </li>
                     </ul>
                 </section>
@@ -106,17 +97,13 @@
                 <footer id="footer">
                     <p class="copyright">&copy; @DateTime.Now.Year CitySpeaks. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
                 </footer>
-                    
+
             </div>
         </div>
 
     </div>
 
     <!-- Scripts -->
-    <script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/skel.min.js"></script>
-    <script src="~/Scripts/util.js"></script>
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="~/Scripts/main.js"></script>
+    @Scripts.Render("~/bundles/main")
 </body>
 </html>

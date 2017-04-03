@@ -28,10 +28,11 @@ namespace CitySpeaks_samle.Models
         public DbSet<News> News { get; set; }
         public DbSet<Programs> Programs { get; set; }
         public DbSet<Workers> Workers { get; set; }
-
         public DbSet<MainPage> MainPage { get; set; }
-
+        public DbSet<CustomPage> CustomPage { get; set; }
         public DbSet<ProgramCategories> Categories { get; set; }
+
+        public DbSet<Review> Review { get; set; }
 
         public static ApplicationDbContext Create()
         {

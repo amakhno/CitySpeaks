@@ -9,26 +9,16 @@ using System.Web.Mvc;
 
 namespace CitySpeaks_samle.Controllers
 {
+    [Authorize]
     public class NewsController : Controller
     {
-        // GET: News
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: News/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: News/Create
         public ActionResult Create()
         {
             return View("Edit", new News());
         }
 
+        [AllowAnonymous]
         // GET: News/Create
         public ActionResult Show(int id)
         {
@@ -93,6 +83,7 @@ namespace CitySpeaks_samle.Controllers
             }
         }
 
+        [AllowAnonymous]
         public FileContentResult GetBigImage(int newsId)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();
@@ -109,6 +100,7 @@ namespace CitySpeaks_samle.Controllers
             }
             }
 
+        [AllowAnonymous]
         public FileContentResult GetSmallImage(int newsId)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();
@@ -164,6 +156,7 @@ namespace CitySpeaks_samle.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult LastNews()
         {
             ApplicationDbContext context = new ApplicationDbContext();

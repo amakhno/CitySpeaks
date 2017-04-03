@@ -10,12 +10,11 @@
         <p>Здесь вы можете: задать нам вопрос, откликнуться на вакансию или записаться на бесплатный пробный урок - это хороший способ познакомиться со студией, ее учебными программами и преподавателями. Не нужно верить рекламе, чужому мнению или цене. Проверьте эффективность методом испытаний! Просто заполните эту форму, и мы свяжемся с вами!</p>
         <span class="image main"><img alt="" src="~/Content/contact-main.jpg"></span>
     </div>
+    
     <div class="6u$ 12u$(medium)">
         @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
+        {            
             <div class="row uniform">
-
-
                 <div class="6u 12u$(xsmall)">
                     @Html.TextBoxFor(x => x.Name, new { @placeholder = "Имя" })
                 </div>
@@ -38,6 +37,7 @@
                         <li><input type="reset" value="Отмена"></li>
                     </ul>
                 </div>
+                @Html.ValidationSummary()
             </div>
         }
     </div>

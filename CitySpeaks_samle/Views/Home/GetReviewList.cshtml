@@ -1,0 +1,27 @@
+﻿@using CitySpeaks_samle.Models
+@model List<CitySpeaks_samle.Models.Review>
+
+@{
+    ViewBag.Title = "Отзывы";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (Review news in Model)
+{
+    <section id="banner" style="padding-top: 2em; padding-bottom: 2em">
+        <div class="content">
+            <header>
+                <h3>
+                    @news.Name
+                </h3>
+            </header>
+            <p>@news.ShortDescription</p>
+        </div>
+        <span class="image object">
+            <img src="@Url.Action("GetImage", "Review",
+       new { news.Id })" alt="">
+        </span>
+    </section>
+    <hr style="margin-top: 1em" class="major" />
+}

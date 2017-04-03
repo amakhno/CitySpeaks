@@ -1,0 +1,17 @@
+﻿@using CitySpeaks_samle.Models
+@model List<Review>
+
+<div class="owl-carousel block-items">
+
+    @foreach (Review a in Model)
+    {
+        <div class="item">
+            <div class="inner-testimonial">
+                <img src="@Url.Action("GetImage", "Review",
+                    new { a.Id })" class="animated bounceIn full-opacity" alt="Клиент 1">
+                <h3 class="city-name">@a.Name</h3>
+                <p class="text-testimonial">@a.ShortDescription</p>
+            </div>
+        </div>
+    }
+</div>

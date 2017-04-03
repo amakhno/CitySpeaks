@@ -16,7 +16,7 @@
                     @news.Name
                 </h3>
             </header>
-            <p>@news.ShortDescription </p>
+            <p> @news.Date.Date.ToShortDateString() <br />@news.ShortDescription </p>
             <ul class="actions">
                 <li>@Html.ActionLink("Читать", "Show", "News", new { id = news.NewsId }, new { @class = " " })</li>
             </ul>

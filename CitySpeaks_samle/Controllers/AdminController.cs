@@ -8,6 +8,7 @@ using CitySpeaks_samle.Models.Admin;
 
 namespace CitySpeaks_samle.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         public static int pageSize = 10;
@@ -25,7 +26,7 @@ namespace CitySpeaks_samle.Controllers
                 News = (new ApplicationDbContext()).News
                     .OrderByDescending(news => news.Date)
                     .Skip((page - 1) * pageSize)
-                    .Take(0),
+                    .Take(pageSize),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
@@ -39,6 +40,12 @@ namespace CitySpeaks_samle.Controllers
         public ViewResult GetWorkersList()
         {
             List<Workers> workers = (new ApplicationDbContext()).Workers.ToList();
+            return View(workers);
+        }
+
+        public ViewResult GetReviewList()
+        {
+            List<Review> workers = (new ApplicationDbContext()).Review.ToList();
             return View(workers);
         }
 
@@ -64,7 +71,7 @@ namespace CitySpeaks_samle.Controllers
         {
             AdminCategoryList model = new AdminCategoryList
             {
-                Category = (new ApplicationDbContext()).Categories.Where(x=>x.CategoryId != 1)
+                Category = (new ApplicationDbContext()).Categories
                     .OrderByDescending(news => news.CategoryId)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize),
@@ -73,6 +80,24 @@ namespace CitySpeaks_samle.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = (new ApplicationDbContext()).Categories.Count()
+                }
+            };
+            return View(model);
+        }
+
+        public ViewResult GetCustomPageList(int page = 1)
+        {
+            AdminCustomPageList model = new AdminCustomPageList
+            {
+                CustomPage = (new ApplicationDbContext()).CustomPage
+                    .OrderByDescending(news => news.Id)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize),
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    TotalItems = (new ApplicationDbContext()).CustomPage.Count()
                 }
             };
             return View(model);

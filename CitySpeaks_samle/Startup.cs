@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using CitySpeaks_samle.Models;
 
 [assembly: OwinStartupAttribute(typeof(CitySpeaks_samle.Startup))]
 namespace CitySpeaks_samle

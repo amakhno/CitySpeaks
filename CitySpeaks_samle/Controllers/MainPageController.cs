@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace CitySpeaks_samle.Controllers
 {
+    [Authorize]
     public class MainPageController : Controller
     {
         // GET: MainPage
@@ -68,6 +69,7 @@ namespace CitySpeaks_samle.Controllers
             }
         }
 
+        [AllowAnonymous]
         public FileContentResult GetMainImage(int newsId)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();
@@ -84,6 +86,7 @@ namespace CitySpeaks_samle.Controllers
             }
         }
 
+        [AllowAnonymous]
         public FileContentResult GetLogoImage(int newsId)
         {
             ApplicationDbContext cnt = new ApplicationDbContext();

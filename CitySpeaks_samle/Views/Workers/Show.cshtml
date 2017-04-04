@@ -1,0 +1,11 @@
+﻿@model CitySpeaks_samle.Models.Workers
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<span class="image main"><img src="@Url.Action("GetBigImage", "Workers",
+                        new { Model.Id })" alt="" /></span>
+
+@Html.Raw(Model.FullDescription)

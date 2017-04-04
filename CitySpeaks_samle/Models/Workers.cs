@@ -20,7 +20,13 @@ namespace CitySpeaks_samle.Models
         [Display(Name = "Описание (коротко)")]
         public string ShortDescription { get; set; }
 
+        [Display(Name = "Страничка")]
+        public string FullDescription { get; set; }
+
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
+
+        public byte[] BigImageData { get; set; }
+        public string BigImageMimeType { get; set; }
     }
 }

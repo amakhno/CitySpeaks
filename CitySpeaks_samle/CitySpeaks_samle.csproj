@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201704031553259_03042017-3.Designer.cs">
       <DependentUpon>201704031553259_03042017-3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704041420597_04042017-1.cs" />
+    <Compile Include="Migrations\201704041420597_04042017-1.Designer.cs">
+      <DependentUpon>201704041420597_04042017-1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin\AdminCategoryList.cs" />
     <Compile Include="Models\Admin\AdminCustomPageList.cs" />
@@ -374,6 +378,7 @@
     <Content Include="Views\Review\Edit.cshtml" />
     <Content Include="Views\Home\GetReviewList.cshtml" />
     <Content Include="Views\Home\ListOfReview.cshtml" />
+    <Content Include="Views\Workers\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -401,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704031553259_03042017-3.resx">
       <DependentUpon>201704031553259_03042017-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041420597_04042017-1.resx">
+      <DependentUpon>201704041420597_04042017-1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

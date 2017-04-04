@@ -32,11 +32,11 @@ namespace CitySpeaks_samle.Controllers
         public ActionResult LastNews()
         {
             ApplicationDbContext context = new ApplicationDbContext();
-            if (context.News.Count() == 0)
+            if (context.News.Count() < 2)
             {
                 return PartialView(null);
             }
-            return PartialView(context.News.OrderByDescending(x => x.Date).FirstOrDefault());
+            return PartialView(context.News.OrderByDescending(x => x.Date).Take(2).ToList());
         }
 
         //Отображение списка категорий

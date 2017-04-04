@@ -96,12 +96,10 @@
             <div class="inner">
                 <!-- Menu -->
                 <nav id="menu">
-                    <header class="major">
                         <a style="width:100%" href="@Url.Action("Index", "Home")" class="image">
                             <img style="width:100%" src="@Url.Action("GetLogoImage", "MainPage",
                         new { newsId = Model.Id })" alt="" />
                         </a>
-                    </header>
                     <ul>
                         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                         <li>@Html.ActionLink("Новости", "GetNewsList", "Home")</li>

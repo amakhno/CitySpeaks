@@ -1,19 +1,22 @@
-﻿@model CitySpeaks_samle.Models.News
+﻿@model List<CitySpeaks_samle.Models.News>
 
-@if(Model!=null)
-{ 
-<div class="mini-posts">    
-    <article>
-        <a href="@Url.Action("Show", "News", new { id = Model.NewsId })" class="image">
-            <img src="@Url.Action("GetSmallImage", "News",
-                        new { Model.NewsId })" alt="" />
-        </a>
-        <p>@Model.ShortDescription</p>
-    </article>
-</div>
-<ul class="actions">
-    @Html.ActionLink("Читать","Show", "News", new { id = Model.NewsId }, new { @class = "button" })
-</ul>
+@if (Model != null)
+{
+    foreach (CitySpeaks_samle.Models.News news in Model)
+    {
+        <div class="mini-posts">
+            <article>
+                <a href="@Url.Action("Show", "News", new { id = news.NewsId })" class="image">
+                    <img src="@Url.Action("GetSmallImage", "News",
+                        new { news.NewsId })" alt="" />
+                </a>
+                <p>@news.ShortDescription</p>
+            </article>
+        </div>
+    }
+    <ul class="actions">
+        @Html.ActionLink("Еще", "GetNewsList", "Home", null, new { @class = "button" })
+    </ul>
 }
 else
 {

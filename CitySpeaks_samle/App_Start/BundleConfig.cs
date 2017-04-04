@@ -31,7 +31,7 @@ namespace CitySpeaks_samle
                       "~/Content/font-awesome.min.css"
                       ));
 
-            bundles.Add(new StyleBundle("~/Content/carousel").Include(
+            bundles.Add(new StyleBundle("~/Content1/carousel").Include(
                       "~/Content/Carousel/animate.css",
                       "~/Content/Carousel/owl.carousel.min.css",
                       "~/Content/Carousel/owl.theme.default.min.css",

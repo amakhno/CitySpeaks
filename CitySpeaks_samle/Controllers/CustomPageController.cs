@@ -115,9 +115,31 @@ namespace CitySpeaks_samle.Controllers
             {
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    var db = context.CustomPage;
+                    var db = context.CustomPage.Where(x=>x.IsShow);
                     List<CustomPage> result = new List<Models.CustomPage>();
                     foreach(var page in db)
+                    {
+                        result.Add(page);
+                    }
+                    return View(result);
+                }
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult GetListOfCorePages()
+        {
+            try
+            {
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    var db = context.CustomPage.Where(x=>!x.IsShow);
+                    List<CustomPage> result = new List<Models.CustomPage>();
+                    foreach (var page in db)
                     {
                         result.Add(page);
                     }

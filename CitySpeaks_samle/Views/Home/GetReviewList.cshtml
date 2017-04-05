@@ -9,19 +9,20 @@
 
 @foreach (Review news in Model)
 {
-    <section id="banner" style="padding-top: 2em; padding-bottom: 2em">
-        <div class="content">
-            <header>
-                <h3>
-                    @news.Name
-                </h3>
-            </header>
-            <p>@news.ShortDescription</p>
-        </div>
-        <span class="image object">
-            <img style="width:25%; text-align:right" src="@Url.Action("GetImage", "Review",
-       new { news.Id })" alt="">
-        </span>
+    <header>
+        <h3>
+            @news.Name
+        </h3>
+    </header>
+    <section id="banner" style="padding-top: 1em; padding-bottom: 1em">
+            <p>
+                    <img style="width:15%; padding-left:2em" src="@Url.Action("GetImage", "Review",
+       new { news.Id })" alt="" align="right" float="left">
+                
+                    @news.ShortDescription
+                   
+            </p>
+    
     </section>
-    <hr style="margin-top: 1em" class="major" />
+    <hr style="margin-top: 1em; margin-bottom:1em" class="major" />
 }

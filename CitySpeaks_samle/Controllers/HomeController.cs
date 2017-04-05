@@ -81,6 +81,7 @@ namespace CitySpeaks_samle.Controllers
             {
                 result = context.Review.Take(3).ToList();
             }
+            result.Reverse();
             return PartialView(result);
         }
 
@@ -105,6 +106,7 @@ namespace CitySpeaks_samle.Controllers
         public ViewResult GetReviewList(int page = 1)
         {
             var Review = (new ApplicationDbContext()).Review.ToList();
+            Review.Reverse();
             return View(Review);
         }
 

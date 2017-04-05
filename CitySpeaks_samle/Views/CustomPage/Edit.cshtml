@@ -33,7 +33,7 @@
             </p>
             <p>
                 <input name="Show" id="Show" type="checkbox" value="true">
-                <label for="Show">Отображать на главной</label>
+                <label for="Show">Отображать в "О себе"</label>
             </p>
             <label>Изображение</label>
             <p><input type="file" name="image2" size="40" id="SmallImage"></p>
@@ -44,14 +44,14 @@
             else
             {
                 <span class="image">
-                    <img width="1000" height="416"
+                    <img width="1100"
                          src="@Url.Action("GetBigImage", "CustomPage",
                         new { Model.Id })" />
                 </span>
             }
         </div>
         <ul class="actions">
-            <li><input type="submit" value="Save" class="button big" /></li>
+            <li><input type="submit" value="Сохранить" class="button big" /></li>
         </ul>
     </div>
 }

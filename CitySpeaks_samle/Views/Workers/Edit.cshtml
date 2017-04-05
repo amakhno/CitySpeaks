@@ -24,6 +24,10 @@
             @Html.LabelFor(x => x.ShortDescription)
             @Html.TextBoxFor(x => x.ShortDescription,
                         new { @class = "form-control" })
+            @Html.LabelFor(x => x.FullDescription)
+
+            @Html.TextAreaFor(x => x.FullDescription, 5, 200,
+                        new { @class = "form-control", rows = 5 })
         </div>
 
         <label>Изображение</label>
@@ -38,6 +42,21 @@
                 <img width="288" height="174"
                      src="@Url.Action("GetImage", "Workers",
                         new { Model.Id })" />
+            </span>
+        }
+
+        <label>Большое изображение</label>
+        <p><input type="file" name="image2" size="40" id="SmallImage"></p>
+        @if (Model == null || Model.BigImageData == null)
+        {
+            <div class="form-control-static">Нет картинки</div>
+        }
+        else
+        {
+            <span class="image">
+                <img width="300"
+                     src="@Url.Action("GetBigImage", "Workers",
+                        new { newsId = Model.Id })" />
             </span>
         }
     </div>

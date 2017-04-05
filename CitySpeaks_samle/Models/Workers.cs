@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CitySpeaks_samle.Models
 {
@@ -21,6 +22,7 @@ namespace CitySpeaks_samle.Models
         public string ShortDescription { get; set; }
 
         [Display(Name = "Страничка")]
+        [AllowHtml]
         public string FullDescription { get; set; }
 
         public byte[] ImageData { get; set; }

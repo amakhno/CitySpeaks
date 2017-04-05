@@ -26,6 +26,7 @@ namespace CitySpeaks_samle.Controllers
             return View(Workers);
         }
 
+        [HttpPost]
         // POST: Workers/Create
         public ActionResult Edit(Workers Workers, HttpPostedFileBase image1, HttpPostedFileBase image2)
         {

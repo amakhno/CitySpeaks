@@ -12,7 +12,7 @@
 -->
 <html>
 <head>
-    <title>@Model.Title</title>
+    <title>CitySpeaks Студия иностранных языков</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -34,11 +34,11 @@
                 <section style="align-content:center">
                     <!-- Header -->
                     <header style="padding-top:0em" id="header">
-                        <a href="@Url.Action("Index", "Admin")" class="logo"><strong>CitySpeaks</strong> ГородГоворит</a>
+                        <div class="logo"><strong>CitySpeaks</strong> Студия иностранных языков</div>
                         <ul class="icons">
-                            <li><a href="#" class="icon fa-vk"><span class="label">vk</span></a></li>
-                            <li><a href="#" class="icon fa-facebook"><span class="label">facebook</span></a></li>
-                            <li><a href="#" class="icon fa-youtube"><span class="label">youtube</span></a></li>
+                            <li><a href="https://vk.com/cityspeaks" class="icon fa-vk"><span class="label">vk</span></a></li>
+                            <li><a href="https://www.facebook.com/cityspeaks.vrn/" class="icon fa-facebook"><span class="label">facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/channel/UCWX4mxhyXdAtodC8pbPpebA" class="icon fa-youtube"><span class="label">youtube</span></a></li>
                         </ul>
                     </header>
 
@@ -126,7 +126,7 @@
                 <!-- Section -->
                 <section>
                     <header class="major">
-                        <h2>Последняя новость</h2>
+                        <h2>Новости</h2>
                     </header>
                     @{Html.RenderAction("LastNews", "Home");}
                 </section>

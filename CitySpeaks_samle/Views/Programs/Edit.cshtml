@@ -1,7 +1,7 @@
 ﻿@model CitySpeaks_samle.Models.Programs
 
 @{
-    ViewBag.Title = "Редактирование новости";
+    ViewBag.Title = "Редактирование программы";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -57,7 +57,7 @@
         else
         {
             <span class="image">
-                <img width="1000" height="416"
+                <img width="1000"
                      src="@Url.Action("GetBigImage", "Programs",
                         new { Model.ProgramId })" />
             </span>
@@ -65,6 +65,6 @@
     </div>
 
     <ul class="actions">
-        <li><input type="submit" value="Save" class="button big" /></li>
+        <li><input type="submit" value="Сохранить" class="button big" /></li>
     </ul>
 }

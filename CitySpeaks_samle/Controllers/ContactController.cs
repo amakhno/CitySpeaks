@@ -27,7 +27,7 @@ namespace CitySpeaks_samle.Controllers
                     mail.From = new MailAddress("mail@u0330659.plsk.regruhosting.ru");
                     mail.To.Add(new MailAddress("mail@u0330659.plsk.regruhosting.ru"));
                     mail.Subject = contact.Theme;
-                    mail.Body = String.Format("Имя: {0}/nТелефон: {1}/nПочта: {2}/nСообщение:\n {3}", contact.Name, contact.PhoneNumber, contact.Mail, contact.Message);
+                    mail.Body = String.Format("Имя: {0}\nТелефон: {1}\nПочта: {2}\nСообщение:\n {3}", contact.Name, contact.PhoneNumber, contact.Mail, contact.Message);
                     SmtpClient client = new SmtpClient();
                     client.Host = "u0330659.plsk.regruhosting.ru";
                     client.Port = 587;
@@ -41,7 +41,7 @@ namespace CitySpeaks_samle.Controllers
                 {
                     throw new Exception("Mail.Send: " + e.Message);
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Success", "Contact");
             }
         }
 
@@ -49,6 +49,11 @@ namespace CitySpeaks_samle.Controllers
         public ActionResult Index()
         {
             return View(new Contact());
+        }
+
+        public ActionResult Success()
+        {
+            return View();
         }
     }
 }

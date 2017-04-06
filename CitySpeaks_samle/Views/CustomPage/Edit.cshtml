@@ -1,11 +1,6 @@
 ﻿@model CitySpeaks_samle.Models.CustomPage
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
-
-@{
     ViewBag.Title = "Редактирование страницы";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
@@ -44,7 +39,7 @@
             else
             {
                 <span class="image">
-                    <img width="1100"
+                    <img width="600"
                          src="@Url.Action("GetBigImage", "CustomPage",
                         new { Model.Id })" />
                 </span>

@@ -1,7 +1,7 @@
 ﻿@model CitySpeaks_samle.Models.MainPage
 
 @{
-    ViewBag.Title = "Редактирование главное страницы";
+    ViewBag.Title = "Редактирование главной страницы";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -41,7 +41,7 @@
         else
         {
             <span class="image">
-                <img width="1100"
+                <img width="600"
                      src="@Url.Action("GetMainImage", "MainPage",
                         new { newsId = Model.Id })" />
             </span>

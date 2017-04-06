@@ -79,7 +79,15 @@ namespace CitySpeaks_samle.Controllers
             List<Review> result;
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                result = context.Review.Take(3).ToList();
+                int count = context.Review.Count();
+                if (count > 2)
+                {
+                    result = context.Review.OrderByDescending(x=>x.Id).Take(5).ToList();
+                }
+                else
+                {
+                    result = context.Review.ToList();
+                }                
             }
             result.Reverse();
             return PartialView(result);

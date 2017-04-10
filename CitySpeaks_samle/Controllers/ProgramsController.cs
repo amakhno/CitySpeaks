@@ -156,7 +156,19 @@ namespace CitySpeaks_samle.Controllers
             List<Programs> model;
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                model = context.Programs.Take((context.Programs.Count() >= 6) ? 6 : context.Programs.Count()).ToList();
+                model = context.Programs.ToList(); //Take((context.Programs.Count() >= 6) ? 6 : context.Programs.Count()).
+
+                Random rnd = new Random();
+                int n = model.Count();
+                while (n > 1)
+                {
+                    int k = rnd.Next(n--);
+                    Programs temp = model[n];
+                    model[n] = model[k];
+                    model[k] = temp;
+                }
+
+                model = model.Take((model.Count() >= 6) ? 6 : model.Count()).ToList();
             }
             return View(model);
         }

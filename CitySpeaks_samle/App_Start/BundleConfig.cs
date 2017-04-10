@@ -25,7 +25,10 @@ namespace CitySpeaks_samle
                         "~/Scripts/util.js",
                         "~/Scripts/main.js"
                         ));
-                
+
+            bundles.Add(new ScriptBundle("~/bundles/yandex").Include("~/Scripts/yandex.js"
+                        ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/main.css",
                       "~/Content/font-awesome.min.css"

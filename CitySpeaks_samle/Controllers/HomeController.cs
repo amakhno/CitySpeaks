@@ -89,7 +89,6 @@ namespace CitySpeaks_samle.Controllers
                     result = context.Review.ToList();
                 }                
             }
-            result.Reverse();
             return PartialView(result);
         }
 

@@ -304,6 +304,7 @@
     <Content Include="Scripts\skel.min.js" />
     <Content Include="Scripts\tnymce.js" />
     <Content Include="Scripts\util.js" />
+    <Content Include="Scripts\yandex.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

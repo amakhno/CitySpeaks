@@ -18,7 +18,8 @@
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content1/carousel")    
+    @Styles.Render("~/Content1/carousel")
+    @Scripts.Render("~/bundles/yandex")
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
@@ -59,7 +60,7 @@
                     <!-- Section -->
                     <section>
                         <header class="major">
-                            <h2>Новые программы</h2>
+                            <h2>Популярные программы</h2>
                         </header>
                         <div class="posts">
                             @Html.Action("GetGridPrograms", "Programs")
@@ -96,10 +97,10 @@
             <div class="inner">
                 <!-- Menu -->
                 <nav id="menu">
-                        <a style="width:100%" href="@Url.Action("Index", "Home")" class="image">
-                            <img style="width:100%" src="@Url.Action("GetLogoImage", "MainPage",
+                    <a style="width:100%" href="@Url.Action("Index", "Home")" class="image">
+                        <img style="width:100%" src="@Url.Action("GetLogoImage", "MainPage",
                         new { newsId = Model.Id })" alt="" />
-                        </a>
+                    </a>
                     <ul>
                         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
                         <li>@Html.ActionLink("Новости", "GetNewsList", "Home")</li>
@@ -162,6 +163,6 @@
     <!-- Scripts -->
     @Scripts.Render("~/bundles/main")
     @Scripts.Render("~/bundles/carousel")
-    
+
 </body>
 </html>

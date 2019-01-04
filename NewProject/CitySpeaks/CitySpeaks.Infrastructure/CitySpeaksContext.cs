@@ -20,6 +20,7 @@ namespace CitySpeaks.Domain.Models
         public virtual DbSet<Programs> Programs { get; set; }
         public virtual DbSet<Reviews> Reviews { get; set; }
         public virtual DbSet<Workers> Workers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -118,6 +119,13 @@ namespace CitySpeaks.Domain.Models
                 entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.ShortDescription).IsRequired();
+            });
+
+            modelBuilder.Entity<User>(entity => {
+                entity.HasKey(e => e.UserName);
+                entity.Property(e => e.Password).IsRequired();
+                entity.Property(e => e.RoleId).IsRequired();
+                entity.HasOne(x => x.Role);
             });
         }
     }

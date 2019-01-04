@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CitySpeaks.WebUI.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using CitySpeaks.Domain.Models;
 
 namespace CitySpeaks.WebUI
 {
@@ -36,9 +36,19 @@ namespace CitySpeaks.WebUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            if (Environment.MachineName.ToLower() == "artem")
+            {
+                services.AddDbContext<CitySpeaksContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ArtemConnection")));
+            } 
+            else
+            {
+                services.AddDbContext<CitySpeaksContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            }
+            
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();

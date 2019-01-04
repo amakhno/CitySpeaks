@@ -1,0 +1,44 @@
+﻿@model CitySpeaks.WebUI.Models.Contact
+
+@{
+    ViewBag.Title = "Написать нам";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row 200%">
+    <div class="6u 12u$(medium)">
+        <p>Здесь вы можете: задать нам вопрос, откликнуться на вакансию или записаться на бесплатный пробный урок - это хороший способ познакомиться со студией, ее учебными программами и преподавателями. Не нужно верить рекламе, чужому мнению или цене. Проверьте эффективность методом испытаний! Просто заполните эту форму, и мы свяжемся с вами!</p>
+        <span class="image main"><img alt="" src="~/img/contact-main.jpg"></span>
+    </div>
+    
+    <div class="6u$ 12u$(medium)">
+        @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {            
+            <div class="row uniform">
+                <div class="6u 12u$(xsmall)">
+                    @Html.TextBoxFor(x => x.Name, new { @placeholder = "Имя" })
+                </div>
+                <div class="6u$ 12u$(xsmall)">
+                    @Html.TextBoxFor(x => x.Mail, new { @placeholder = "Email" })
+                </div>
+                <div class="6u 12u$(xsmall)">
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @placeholder = "Номер телефона" })
+                </div>
+                <div class="6u$ 12u$(xsmall)">
+                    @Html.DropDownListFor(x => x.Theme, new SelectList(new string[] { "- Тема -", "Записаться на пробный урок", "Оставить отзыв", "Вакансия" }))
+                </div>
+                <div class="12u$">
+                    @Html.TextAreaFor(x => x.Message, new { @rows = 6, placeholder = "Введите сообщение" })
+                </div>
+                <!-- Break -->
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input class="special" type="submit" value="Отправить"></li>
+                        <li><input type="reset" value="Отмена"></li>
+                    </ul>
+                </div>
+                @Html.ValidationSummary()
+            </div>
+        }
+    </div>
+</div>

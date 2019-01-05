@@ -5,11 +5,15 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CitySpeaks.Domain", "CitySpeaks.Domain\CitySpeaks.Domain.csproj", "{6AF3E3F5-118B-4A13-B736-09B0812BD8D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CitySpeaks.Infrastructure", "CitySpeaks.Infrastructure\CitySpeaks.Infrastructure.csproj", "{1855170F-2E69-469B-8F3A-DDB987992C4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CitySpeaks.Persistence", "CitySpeaks.Infrastructure\CitySpeaks.Persistence.csproj", "{1855170F-2E69-469B-8F3A-DDB987992C4F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CitySpeaks.WebUI", "CitySpeaks.WebUI\CitySpeaks.WebUI.csproj", "{75D5587B-67DA-4A69-8C0D-9AC0F498C82A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitySpeaks_samle", "..\..\CitySpeaks_samle\CitySpeaks_samle.csproj", "{F9E3DCF3-EF12-489E-B723-03C6547267D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{84F372CB-D24C-4CEF-9E7C-A7C41BE8A7C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CitySpeaks.Application", "CitySpeaks.Application\CitySpeaks.Application.csproj", "{916E6470-FBF4-42E3-AFF6-C097523FF940}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,9 +73,25 @@ Global
 		{F9E3DCF3-EF12-489E-B723-03C6547267D6}.Release|x64.Build.0 = Release|Any CPU
 		{F9E3DCF3-EF12-489E-B723-03C6547267D6}.Release|x86.ActiveCfg = Release|Any CPU
 		{F9E3DCF3-EF12-489E-B723-03C6547267D6}.Release|x86.Build.0 = Release|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Debug|x64.Build.0 = Debug|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Debug|x86.Build.0 = Debug|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Release|x64.ActiveCfg = Release|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Release|x64.Build.0 = Release|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Release|x86.ActiveCfg = Release|Any CPU
+		{916E6470-FBF4-42E3-AFF6-C097523FF940}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6AF3E3F5-118B-4A13-B736-09B0812BD8D5} = {84F372CB-D24C-4CEF-9E7C-A7C41BE8A7C0}
+		{916E6470-FBF4-42E3-AFF6-C097523FF940} = {84F372CB-D24C-4CEF-9E7C-A7C41BE8A7C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25678168-A826-498E-8641-7447C0812F3C}

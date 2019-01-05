@@ -12,7 +12,6 @@ namespace CitySpeaks.WebUI.Controllers
         [HttpPost]
         public ActionResult Index(Contact contact)
         {
-            CitySpeaksContext context = new CitySpeaksContext();
             if (!ModelState.IsValid)
             {
                 return View(contact);

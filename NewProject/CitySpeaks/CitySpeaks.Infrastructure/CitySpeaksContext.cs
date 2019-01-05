@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CitySpeaks.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace CitySpeaks.Domain.Models
+namespace CitySpeaks.Infrastructure
 {
     public partial class CitySpeaksContext : DbContext
     {
@@ -21,6 +22,7 @@ namespace CitySpeaks.Domain.Models
         public virtual DbSet<Reviews> Reviews { get; set; }
         public virtual DbSet<Workers> Workers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,20 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CitySpeaks.WebUI.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using CitySpeaks.Infrastructure;
 
 namespace CitySpeaks.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public IActionResult Index()
+        CitySpeaksContext _citySpeaksContext;
+
+        public HomeController(CitySpeaksContext citySpeaksContext)
         {
+            _citySpeaksContext = citySpeaksContext;
+        }
+        public async Task<IActionResult> Index()
+        {
+            await Mediator.Send(new Application.News.Commands.AddNewsCommand() { Name = "" });
             return View(new LoginViewModel());
         }
 

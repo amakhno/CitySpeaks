@@ -9,7 +9,6 @@ namespace CitySpeaks.WebUI.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
 

@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using CitySpeaks.Domain.Models;
+using CitySpeaks.Infrastructure;
+using MediatR;
+using CitySpeaks.Application.Infrastracture;
+using CitySpeaks.Application.News.Commands;
+using System.Reflection;
 
 namespace CitySpeaks.WebUI
 {
@@ -36,6 +35,10 @@ namespace CitySpeaks.WebUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+            services.AddMediatR(typeof(AddNewsCommandHandler).GetTypeInfo().Assembly);
+
             if (Environment.MachineName.ToLower() == "artem")
             {
                 services.AddDbContext<CitySpeaksContext>(options =>
@@ -48,12 +51,13 @@ namespace CitySpeaks.WebUI
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             }
-            
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+                .AddCookie(opt => opt.LoginPath = new PathString("/login"));            
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddNewsCommandValidator>()); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,41 +1,55 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using CitySpeaks.Domain.Models;
+﻿using CitySpeaks.Domain.Models;
+using CitySpeaks.Infrastructure;
 using CitySpeaks.WebUI.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Transactions;
 
 namespace CitySpeaks_samle.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
-        public AccountController()
+        private readonly CitySpeaksContext _citySpeaksContext;
+
+        public AccountController(CitySpeaksContext citySpeaksContext)
         {
+            _citySpeaksContext = citySpeaksContext;
         }
 
-        //
-        // GET: /Account/Register
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
+        [Route("/login")]
+        public ActionResult Login()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName };
+                using (var scope = new TransactionScope(
+                    TransactionScopeOption.Required,
+                    new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    var role = await _citySpeaksContext.Roles.SingleOrDefaultAsync(x => x.Name == "User");
+                    if (role == null)
+                    {
+                        role = (await _citySpeaksContext.Roles.AddAsync(new Role { Name = "User" })).Entity;
+                        _citySpeaksContext.SaveChanges();
+                    }
+                    scope.Complete();
+                    var user = new User { UserName = model.UserName, Password = model.Password, RoleId = role.Id };                    
+                }
                 return RedirectToAction("Index", "Home");
-
             }
-
-            // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
-        }        
+        }
     }
 }

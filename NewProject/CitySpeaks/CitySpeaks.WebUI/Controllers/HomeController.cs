@@ -20,7 +20,7 @@ namespace CitySpeaks.WebUI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            await Mediator.Send(new Application.News.Commands.AddNewsCommand() { Name = "" });
+            await Mediator.Send(new Application.News.Commands.AddNewsCommand() { Name = "UserEnai" });
             return View(new LoginViewModel());
         }
 

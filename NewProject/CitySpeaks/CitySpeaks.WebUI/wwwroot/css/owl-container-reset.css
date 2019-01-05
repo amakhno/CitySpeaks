@@ -1,0 +1,12 @@
+﻿.owl-container {
+    all: initial; /* blocking inheritance for all properties */
+    width: 60vw;
+}
+
+    .owl-container * {
+        all: unset; /* allowing inheritance within #mydiv */
+    }
+
+        .owl-container * div {
+            display: block;
+        }

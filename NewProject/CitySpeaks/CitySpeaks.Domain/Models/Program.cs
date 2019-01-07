@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CitySpeaks.Domain.Models
 {
-    public partial class Programs
+    public partial class Program
     {
         public int ProgramId { get; set; }
         public string Name { get; set; }
@@ -15,6 +15,6 @@ namespace CitySpeaks.Domain.Models
         public string SmallImageMimeType { get; set; }
         public int CategoryId { get; set; }
 
-        public virtual ProgramCategories Category { get; set; }
+        public virtual ProgramCategory Category { get; set; }
     }
 }

@@ -15,13 +15,13 @@ namespace CitySpeaks.Infrastructure
             : base(options)
         {
         }
-        public virtual DbSet<CustomPages> CustomPages { get; set; }
-        public virtual DbSet<MainPages> MainPages { get; set; }
+        public virtual DbSet<CustomPage> CustomPages { get; set; }
+        public virtual DbSet<MainPage> MainPages { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<ProgramCategories> ProgramCategories { get; set; }
-        public virtual DbSet<Programs> Programs { get; set; }
-        public virtual DbSet<Reviews> Reviews { get; set; }
-        public virtual DbSet<Workers> Workers { get; set; }
+        public virtual DbSet<ProgramCategory> ProgramCategories { get; set; }
+        public virtual DbSet<Program> Programs { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Worker> Workers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
 

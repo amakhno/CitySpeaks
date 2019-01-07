@@ -38,19 +38,14 @@ namespace CitySpeaks.WebUI
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(AddNewsCommandHandler).GetTypeInfo().Assembly);
-
+            string connectionName = "DefaultConnection";
             if (Environment.MachineName.ToLower() == "artem")
             {
-                services.AddDbContext<CitySpeaksContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("ArtemConnection")));
-            } 
-            else
-            {
-                services.AddDbContext<CitySpeaksContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                connectionName = "ArtemConnection";
             }
+            services.AddDbContext<CitySpeaksContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString(connectionName)));
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

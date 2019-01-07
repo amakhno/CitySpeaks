@@ -19,7 +19,7 @@ namespace CitySpeaks.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CitySpeaks.Domain.Models.CustomPages", b =>
+            modelBuilder.Entity("CitySpeaks.Domain.Models.CustomPage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace CitySpeaks.Infrastructure.Migrations
                     b.ToTable("CustomPages");
                 });
 
-            modelBuilder.Entity("CitySpeaks.Domain.Models.MainPages", b =>
+            modelBuilder.Entity("CitySpeaks.Domain.Models.MainPage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,27 +68,6 @@ namespace CitySpeaks.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MainPages");
-                });
-
-            modelBuilder.Entity("CitySpeaks.Domain.Models.MigrationHistory", b =>
-                {
-                    b.Property<string>("MigrationId")
-                        .HasMaxLength(150);
-
-                    b.Property<string>("ContextKey")
-                        .HasMaxLength(300);
-
-                    b.Property<byte[]>("Model")
-                        .IsRequired();
-
-                    b.Property<string>("ProductVersion")
-                        .IsRequired()
-                        .HasMaxLength(32);
-
-                    b.HasKey("MigrationId", "ContextKey")
-                        .HasName("PK_dbo.__MigrationHistory");
-
-                    b.ToTable("__MigrationHistory");
                 });
 
             modelBuilder.Entity("CitySpeaks.Domain.Models.News", b =>
@@ -122,22 +101,7 @@ namespace CitySpeaks.Infrastructure.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("CitySpeaks.Domain.Models.ProgramCategories", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("CategoryId")
-                        .HasName("PK_dbo.ProgramCategories");
-
-                    b.ToTable("ProgramCategories");
-                });
-
-            modelBuilder.Entity("CitySpeaks.Domain.Models.Programs", b =>
+            modelBuilder.Entity("CitySpeaks.Domain.Models.Program", b =>
                 {
                     b.Property<int>("ProgramId")
                         .ValueGeneratedOnAdd()
@@ -171,7 +135,22 @@ namespace CitySpeaks.Infrastructure.Migrations
                     b.ToTable("Programs");
                 });
 
-            modelBuilder.Entity("CitySpeaks.Domain.Models.Reviews", b =>
+            modelBuilder.Entity("CitySpeaks.Domain.Models.ProgramCategory", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("CategoryId")
+                        .HasName("PK_dbo.ProgramCategories");
+
+                    b.ToTable("ProgramCategories");
+                });
+
+            modelBuilder.Entity("CitySpeaks.Domain.Models.Review", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -222,7 +201,7 @@ namespace CitySpeaks.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("CitySpeaks.Domain.Models.Workers", b =>
+            modelBuilder.Entity("CitySpeaks.Domain.Models.Worker", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -249,9 +228,9 @@ namespace CitySpeaks.Infrastructure.Migrations
                     b.ToTable("Workers");
                 });
 
-            modelBuilder.Entity("CitySpeaks.Domain.Models.Programs", b =>
+            modelBuilder.Entity("CitySpeaks.Domain.Models.Program", b =>
                 {
-                    b.HasOne("CitySpeaks.Domain.Models.ProgramCategories", "Category")
+                    b.HasOne("CitySpeaks.Domain.Models.ProgramCategory", "Category")
                         .WithMany("Programs")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_dbo.Programs_dbo.ProgramCategories_CategoryId")

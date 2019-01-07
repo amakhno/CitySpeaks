@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace CitySpeaks.Domain.Models
 {
-    public partial class ProgramCategories
+    public partial class ProgramCategory
     {
-        public ProgramCategories()
+        public ProgramCategory()
         {
-            Programs = new HashSet<Programs>();
+            Programs = new HashSet<Program>();
         }
 
         public int CategoryId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Programs> Programs { get; set; }
+        public virtual ICollection<Program> Programs { get; set; }
     }
 }

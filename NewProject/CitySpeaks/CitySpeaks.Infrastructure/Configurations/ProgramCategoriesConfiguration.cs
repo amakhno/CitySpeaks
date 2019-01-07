@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CitySpeaks.Persistence.Configurations
 {
-    public class ProgramCategoriesConfiguration : IEntityTypeConfiguration<ProgramCategories>
+    public class ProgramCategoriesConfiguration : IEntityTypeConfiguration<ProgramCategory>
     {
-        public void Configure(EntityTypeBuilder<ProgramCategories> builder)
+        public void Configure(EntityTypeBuilder<ProgramCategory> builder)
         {
             builder.HasKey(e => e.CategoryId)
                     .HasName("PK_dbo.ProgramCategories");

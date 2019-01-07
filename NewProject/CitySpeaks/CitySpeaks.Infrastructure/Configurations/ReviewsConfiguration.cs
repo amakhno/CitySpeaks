@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CitySpeaks.Persistence.Configurations
 {
-    public class ReviewsConfiguration : IEntityTypeConfiguration<Reviews>
+    public class ReviewsConfiguration : IEntityTypeConfiguration<Review>
     {
-        public void Configure(EntityTypeBuilder<Reviews> builder)
+        public void Configure(EntityTypeBuilder<Review> builder)
         {
             builder.Property(e => e.Name).IsRequired();
             builder.Property(e => e.ShortDescription).IsRequired();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CitySpeaks.Domain.Models
 {
-    public partial class Reviews
+    public partial class Review
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -30,7 +30,7 @@ namespace CitySpeaks_samle.Controllers
                 try
                 {
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("mail@u0330659.plsk.regruhosting.ru");
+                    mail.From = new MailAddress("mail@cityspeaks.ru");
                     mail.To.Add(new MailAddress("mail@cityspeaks.ru"));
                     mail.Subject = contact.Theme;
                     mail.Body = String.Format("Имя: {0}\nТелефон: {1}\nПочта: {2}\nСообщение:\n{3}", contact.Name, contact.PhoneNumber, contact.Mail, contact.Message);
@@ -38,7 +38,7 @@ namespace CitySpeaks_samle.Controllers
                     client.Host = "u0330659.plsk.regruhosting.ru";
                     client.Port = 587;
                     client.EnableSsl = false;
-                    client.Credentials = new NetworkCredential("mail@u0330659.plsk.regruhosting.ru".Split('@')[0], "167943As");
+                    client.Credentials = new NetworkCredential("mail@cityspeaks.ru".Split('@')[0], "167943As");
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     client.Send(mail);
                     mail.Dispose();

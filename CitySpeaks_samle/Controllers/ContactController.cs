@@ -31,7 +31,7 @@ namespace CitySpeaks_samle.Controllers
                 {
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("mail@u0330659.plsk.regruhosting.ru");
-                    mail.To.Add(new MailAddress("mail@u0330659.plsk.regruhosting.ru"));
+                    mail.To.Add(new MailAddress("mail@cityspeaks.ru"));
                     mail.Subject = contact.Theme;
                     mail.Body = String.Format("Имя: {0}\nТелефон: {1}\nПочта: {2}\nСообщение:\n{3}", contact.Name, contact.PhoneNumber, contact.Mail, contact.Message);
                     SmtpClient client = new SmtpClient();

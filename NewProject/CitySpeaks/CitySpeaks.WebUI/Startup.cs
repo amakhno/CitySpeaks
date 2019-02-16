@@ -1,5 +1,10 @@
-﻿using System;
+﻿using CitySpeaks.Application.Infrastracture;
+using CitySpeaks.Application.News.Commands;
+using CitySpeaks.Infrastructure;
+using CitySpeaks.Persistence;
 using FluentValidation.AspNetCore;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,11 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using CitySpeaks.Infrastructure;
-using MediatR;
-using CitySpeaks.Application.Infrastracture;
-using CitySpeaks.Application.News.Commands;
 using System.Reflection;
 
 namespace CitySpeaks.WebUI
@@ -39,18 +39,15 @@ namespace CitySpeaks.WebUI
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(AddNewsCommandHandler).GetTypeInfo().Assembly);
 
-            string connectionString = Configuration.GetConnectionString("PersonalConnection") ?? 
-                Configuration.GetConnectionString("DefaultConnection");
-            
             services.AddDbContext<CitySpeaksContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(opt => opt.LoginPath = new PathString("/login"));            
+                .AddCookie(opt => opt.LoginPath = new PathString("/login"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddNewsCommandValidator>()); ;
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddNewsCommandValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

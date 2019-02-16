@@ -1,14 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CitySpeaks.WebUI.Models
 {
     public class LoginViewModel
     {
-        public string UserName { get; set; }
+        [Required]
+        [Display(Name = "Адрес электронной почты")]
+        [EmailAddress]
+        public string Email { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
+
+        [Display(Name = "Запомнить меня")]
+        public bool RememberMe { get; set; }
     }
 }

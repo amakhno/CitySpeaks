@@ -2,15 +2,10 @@
 using CitySpeaks.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace CitySpeaks.Infrastructure
+namespace CitySpeaks.Persistence
 {
     public partial class CitySpeaksContext : DbContext
     {        
-
-        public CitySpeaksContext()
-        {
-        }
-
         public CitySpeaksContext(DbContextOptions<CitySpeaksContext> options)
             : base(options)
         {
@@ -24,6 +19,7 @@ namespace CitySpeaks.Infrastructure
         public virtual DbSet<Worker> Workers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,6 +41,7 @@ namespace CitySpeaks.Infrastructure
             modelBuilder.ApplyConfiguration(new ReviewsConfiguration());
             modelBuilder.ApplyConfiguration(new WorkersConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ImageConfiguration());
         }
     }
 

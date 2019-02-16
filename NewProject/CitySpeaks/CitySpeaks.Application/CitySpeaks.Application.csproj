@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CitySpeaks.Infrastructure.Interfaces\CitySpeaks.Infrastructure.Interfaces.csproj" />
     <ProjectReference Include="..\CitySpeaks.Infrastructure\CitySpeaks.Persistence.csproj" />
   </ItemGroup>
 

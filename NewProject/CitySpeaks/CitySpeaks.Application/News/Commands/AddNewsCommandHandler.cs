@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using CitySpeaks.Infrastructure;
+using CitySpeaks.Persistence;
 using MediatR;
 
 namespace CitySpeaks.Application.News.Commands

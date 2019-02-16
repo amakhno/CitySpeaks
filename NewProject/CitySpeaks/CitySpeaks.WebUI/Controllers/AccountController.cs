@@ -1,14 +1,17 @@
-﻿using CitySpeaks.Domain.Models;
-using CitySpeaks.Infrastructure;
+﻿using CitySpeaks.Application.Users.Commands;
+using CitySpeaks.Infrastructure.Interfaces.Dto.User;
+using CitySpeaks.Persistence;
 using CitySpeaks.WebUI.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Transactions;
 
-namespace CitySpeaks_samle.Controllers
+namespace CitySpeaks.WebUI.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly CitySpeaksContext _citySpeaksContext;
 
@@ -17,6 +20,7 @@ namespace CitySpeaks_samle.Controllers
             _citySpeaksContext = citySpeaksContext;
         }
 
+        [Route("/register")]
         public ActionResult Register()
         {
             return View();
@@ -25,31 +29,53 @@ namespace CitySpeaks_samle.Controllers
         [Route("/login")]
         public ActionResult Login()
         {
+            return View();
+        }
+
+        [Route("/logout")]
+        public async Task<ActionResult> Logout()
+        {
+            await LogOut();
             return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Route("/register")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                using (var scope = new TransactionScope(
-                    TransactionScopeOption.Required,
-                    new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }, TransactionScopeAsyncFlowOption.Enabled))
+                CreateUserCommand createUserCommand = new CreateUserCommand()
                 {
-                    var role = await _citySpeaksContext.Roles.SingleOrDefaultAsync(x => x.Name == "User");
-                    if (role == null)
-                    {
-                        role = (await _citySpeaksContext.Roles.AddAsync(new Role { Name = "User" })).Entity;
-                        _citySpeaksContext.SaveChanges();
-                    }
-                    scope.Complete();
-                    var user = new User { UserName = model.UserName, Password = model.Password, RoleId = role.Id };                    
-                }
+                    RegisterDto = new RegisterDto(model.Email, model.Password)
+                };
+                var userWithRoleNames = await Mediator.Send(createUserCommand);
+                await LogIn(userWithRoleNames.UserName, userWithRoleNames.RoleName);
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
+        }
+
+        private async Task LogIn(string userName, string roleName)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, userName),
+                new Claim(ClaimTypes.Role, roleName),
+            };
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                new AuthenticationProperties());
+        }
+
+        private async Task LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
     }
 }

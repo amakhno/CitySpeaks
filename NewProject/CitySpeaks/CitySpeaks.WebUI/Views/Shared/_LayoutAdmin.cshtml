@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+
+    <link href="~/css/owl-container-reset.css" rel="stylesheet" />
+    <link href="~/lib/OwlCarousel2/assets/owl.carousel.css" rel="stylesheet" />
+    <link href="~/lib/OwlCarousel2/assets/owl.theme.default.css" rel="stylesheet" />
+
+    <script src="~/js/yandex.js"></script>
+</head>
+<body>
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Banner -->
+                <section>
+                    <header class="major">
+                        <h2>@ViewBag.Title</h2>
+                    </header>
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li>@Html.ActionLink("Новости", "GetNewsList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Программы", "GetProgramsList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Категории программ", "GetCategoryList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Работники", "GetWorkersList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Список страниц", "GetCustomPageList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("Список отзывов", "GetReviewList", "Admin", null, null)</li>
+                        <li>@Html.ActionLink("На главную", "Index", "Home", null, null)</li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+    </environment>
+    <script src="~/lib/skel/skel.min.js"></script>
+    <script src="~/js/util.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/lib/OwlCarousel2/owl.carousel.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

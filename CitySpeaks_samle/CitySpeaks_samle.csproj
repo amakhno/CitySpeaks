@@ -372,7 +372,7 @@
     <Content Include="Views\Admin\GetReviewList.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
     <Content Include="Views\Home\GetReviewList.cshtml" />
-    <Content Include="Views\Home\ListOfReview.cshtml" />
+    <Content Include="Views\Home\Components\ListOfReview\Default.cshtml" />
     <Content Include="Views\Workers\Show.cshtml" />
     <Content Include="Views\CustomPage\GetListOfCorePages.cshtml" />
     <Content Include="Views\Shared\Map.cshtml" />

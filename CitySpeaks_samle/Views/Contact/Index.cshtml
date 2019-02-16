@@ -1,5 +1,5 @@
-﻿@model CitySpeaks_samle.Models.Contact
-
+﻿@using reCAPTCHA.MVC
+@model CitySpeaks_samle.Models.Contact
 @{
     ViewBag.Title = "Написать нам";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,10 +10,10 @@
         <p>Здесь вы можете: задать нам вопрос, откликнуться на вакансию или записаться на бесплатный пробный урок - это хороший способ познакомиться со студией, ее учебными программами и преподавателями. Не нужно верить рекламе, чужому мнению или цене. Проверьте эффективность методом испытаний! Просто заполните эту форму, и мы свяжемся с вами!</p>
         <span class="image main"><img alt="" src="~/Content/contact-main.jpg"></span>
     </div>
-    
+
     <div class="6u$ 12u$(medium)">
         @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {            
+        {
             <div class="row uniform">
                 <div class="6u 12u$(xsmall)">
                     @Html.TextBoxFor(x => x.Name, new { @placeholder = "Имя" })
@@ -30,8 +30,16 @@
                 <div class="12u$">
                     @Html.TextAreaFor(x => x.Message, new { @rows = 6, placeholder = "Введите сообщение" })
                 </div>
+                <div class="col-6 col-12-small">
+                    <input type="checkbox" name="IsPersonalDataConfirmed" id="IsPersonalDataConfirmed" value="true" />
+                    <label for="IsPersonalDataConfirmed">Я даю согласие на обработку своих персональных данных в порядке, установленном Федеральным законом РФ от 27.07.2006 N 152-ФЗ "О персональных данных"</label>
+                </div>
                 <!-- Break -->
                 <div class="12u$">
+                    @Html.Recaptcha()
+                </div>
+                <div class="12u$">
+
                     <ul class="actions">
                         <li><input class="special" type="submit" value="Отправить"></li>
                         <li><input type="reset" value="Отмена"></li>

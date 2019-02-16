@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CitySpeaks_samle.Models
 {
@@ -21,6 +17,9 @@ namespace CitySpeaks_samle.Models
 
         [Required(ErrorMessage = "Пожалуйста, введите сообщение")]
         public string Message { get; set; }
+
+        [Required]
+        public bool IsPersonalDataConfirmed { get; set; }
 
         public string Know { get; set; }
     }

@@ -12,11 +12,17 @@ namespace CitySpeaks_samle.Controllers
     public class ContactController : Controller
     {
         [HttpPost]
+        [reCAPTCHA.MVC.CaptchaValidator(ErrorMessage = "Не пройдена проверка",
+        RequiredMessage = "Пройдите проверку")]
         public ActionResult Index(Contact contact)
         {
             ApplicationDbContext context = new ApplicationDbContext();
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || contact.IsPersonalDataConfirmed == false)
             {
+                if (!contact.IsPersonalDataConfirmed)
+                {
+                    ModelState.AddModelError(nameof(contact.IsPersonalDataConfirmed), "Вы должны подтвердить согласие на обработку персональных данных");
+                }
                 return View(contact);
             }
             else

@@ -10,3 +10,28 @@
         .owl-container * div {
             display: block;
         }
+
+    .owl-container h3 {
+        display: block;
+        font-size: 2.0rem;
+        text-align: center;
+    }
+
+    .owl-container .review-image {
+        display: block;
+        font-size: 1.5rem;
+        text-align: center;
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    .owl-container p {
+        font-size: 1.2rem;
+    }
+
+        .owl-container .review-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }

@@ -1,5 +1,8 @@
 ﻿@using CitySpeaks.Domain.Models
 @model List<Review>
+<style>
+
+</style>
 <div style="display: flex;
         justify-content: center;">
     <div class="owl-container">
@@ -7,34 +10,14 @@
             @foreach (Review a in Model)
             {
                 <div class="item">
-                    <div class="inner-testimonial">
+                    <div class="review-image">
                         <img src="@Url.Action("GetImage", "Review",
-                            new { a.Id })" class="animated bounceIn full-opacity" height="50" alt="Клиент 1">
-                        <h3 class="city-name">@a.Name</h3>
-                        <p class="text-testimonial">@a.ShortDescription</p>
+                            new { a.Id })" class="animated bounceIn full-opacity" alt="Фото">
                     </div>
+                        <h3 class="city-name">@a.Name:</h3>
+                        <p class="text-testimonial">@a.ShortDescription</p>                    
                 </div>
             }
         </div>
     </div>
 </div>
-@section scripts {
-    <script>
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 3
-                    },
-                    1000: {
-                        items: 2
-                    }
-                }
-            })
-    </script>
-}

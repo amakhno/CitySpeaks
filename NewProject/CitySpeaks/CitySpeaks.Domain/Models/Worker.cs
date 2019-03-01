@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CitySpeaks.Domain.Models
+﻿namespace CitySpeaks.Domain.Models
 {
     public partial class Worker
     {
@@ -9,9 +6,9 @@ namespace CitySpeaks.Domain.Models
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string FullDescription { get; set; }
-        public byte[] ImageData { get; set; }
-        public string ImageMimeType { get; set; }
-        public byte[] BigImageData { get; set; }
-        public string BigImageMimeType { get; set; }
+        public int? SmallImageId { get; set; }
+        public int? BigImageId { get; set; }
+        public virtual Image SmallImage { get; set; }
+        public virtual Image BigImage { get; set; }
     }
 }

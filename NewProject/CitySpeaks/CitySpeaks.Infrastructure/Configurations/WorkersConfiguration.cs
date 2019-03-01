@@ -10,6 +10,8 @@ namespace CitySpeaks.Persistence.Configurations
         {
             builder.Property(e => e.Name).IsRequired();
             builder.Property(e => e.ShortDescription).IsRequired();
+            builder.HasOne(e => e.BigImage).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(e => e.SmallImage).WithOne().OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

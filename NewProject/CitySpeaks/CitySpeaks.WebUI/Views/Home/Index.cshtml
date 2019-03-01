@@ -33,7 +33,7 @@
         <h2>Наша команда</h2>
     </header>
     <div class="features">
-        @*@Html.Action("ListOfWorkers", "Home")*@
+        <vc:list-of-workers max-priority="2" is-done="false"></vc:list-of-workers>
     </div>
 </section>
 
@@ -41,12 +41,10 @@
     <header class="major">
         <h2>Отзывы</h2>
     </header>
-    <div class="features">
-        <vc:list-of-review></vc:list-of-review>
-    </div>
 </section>
 
-@await Component.InvokeAsync("ListOfReview", new { maxPriority = 2, isDone = false })
+<vc:list-of-review max-priority="2" is-done="false"></vc:list-of-review>
+
 @section scripts {
     <script>
         $('.owl-carousel').owlCarousel({

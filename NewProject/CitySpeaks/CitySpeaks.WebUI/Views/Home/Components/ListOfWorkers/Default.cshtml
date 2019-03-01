@@ -1,0 +1,18 @@
+﻿@using CitySpeaks.Domain.Models
+@model List<Worker>
+
+@foreach (Worker worker in Model)
+{
+    <article>
+        <div style="margin-right: 2em">
+            <a href="@Url.Action("Show", "Workers", new { id = worker.Id })" class="image">
+                <img src="@Url.Action("GetImage", "Workers",
+                    new { WorkersId = worker.Id })" style="height:10em; border-radius: 0.375em" alt="" />
+            </a>
+        </div>
+        <div class="content">
+            <h3>@worker.Name</h3>
+            <p>@worker.ShortDescription</p>
+        </div>
+    </article>
+}

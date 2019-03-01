@@ -33,11 +33,3 @@ BEGIN
 END   
 CLOSE vendor_cursor;  
 DEALLOCATE vendor_cursor;  
-
-DECLARE @iamgeID int
-SELECT TOP 1 @iamgeID = ID from Images ORDER BY ID DESC 
-PRINT @iamgeID
-
-DELETE  Images
-
-SELECT * from 

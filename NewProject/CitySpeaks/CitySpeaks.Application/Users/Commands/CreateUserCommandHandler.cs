@@ -27,7 +27,7 @@ namespace CitySpeaks.Application.Users.Commands
         public async Task<UsernameWithRolenameDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var result = new UsernameWithRolenameDto();
-            RegisterDto registerDto = request.RegisterDto;            
+            LoginDto registerDto = request.RegisterDto;            
             using (var transaction = new CommittableTransaction(
                 new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
             {

@@ -5,6 +5,6 @@ namespace CitySpeaks.Application.Users.Commands
 {
     public class CreateUserCommand : IRequest<UsernameWithRolenameDto>
     {
-        public RegisterDto RegisterDto { get; set; }
+        public LoginDto RegisterDto { get; set; }
     }
 }

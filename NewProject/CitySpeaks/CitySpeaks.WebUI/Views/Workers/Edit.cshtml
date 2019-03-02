@@ -1,11 +1,11 @@
-﻿@model CitySpeaks.Domain.Models.MainPage
+﻿@model Worker
 
 @{
-    ViewBag.Title = "Редактирование главной страницы";
+    ViewBag.Title = "Редактирование работника";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@using (Html.BeginForm("Edit", "MainPage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Workers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <p>
         @if (TempData["message"] != null)
@@ -17,39 +17,37 @@
     <div class="panel-body">
         @Html.HiddenFor(m => m.Id)
         <div class="form-group">
-            @Html.LabelFor(x => x.Title)
+            @Html.LabelFor(x => x.Name)
 
-            @Html.TextBoxFor(x => x.Title,
+            @Html.TextBoxFor(x => x.Name,
                         new { @class = "form-control" })
-            @Html.LabelFor(x => x.Subtitle)
-
-            @Html.TextBoxFor(x => x.Subtitle,
+            @Html.LabelFor(x => x.ShortDescription)
+            @Html.TextBoxFor(x => x.ShortDescription,
                         new { @class = "form-control" })
-            @Html.LabelFor(x => x.Description)
+            @Html.LabelFor(x => x.FullDescription)
 
-            @Html.TextAreaFor(x => x.Description, 20, 200,
-                        new { @class = "form-control", rows = 20 })
-
+            @Html.TextAreaFor(x => x.FullDescription, 5, 200,
+                        new { @class = "form-control", rows = 5 })
         </div>
 
-        <label>Главное изображение</label>
+        <label>Изображение</label>
         <p><input type="file" name="image1" size="40" id="SmallImage"></p>
-        @if (Model == null || Model.LogolImageData == null)
+        @if (Model == null || Model.SmallImage == null)
         {
             <div class="form-control-static">Нет картинки</div>
         }
         else
         {
             <span class="image">
-                <img width="600"
-                     src="@Url.Action("GetMainImage", "MainPage",
-                        new { newsId = Model.Id })" />
+                <img width="288" height="174"
+                     src="@Url.Action("GetImage", "Workers",
+                        new { Model.Id })" />
             </span>
         }
 
-        <label>Логотип</label>
+        <label>Большое изображение</label>
         <p><input type="file" name="image2" size="40" id="SmallImage"></p>
-        @if (Model == null || Model.LogolImageData == null)
+        @if (Model == null || Model.BigImage == null)
         {
             <div class="form-control-static">Нет картинки</div>
         }
@@ -57,14 +55,14 @@
         {
             <span class="image">
                 <img width="300"
-                     src="@Url.Action("GetLogoImage", "MainPage",
+                     src="@Url.Action("GetBigImage", "Workers",
                         new { newsId = Model.Id })" />
             </span>
         }
     </div>
+
     <ul class="actions">
         <li><input type="submit" value="Сохранить" class="button big" /></li>
     </ul>
 }
 
-<script>tinymce.init({ selector: 'textarea' });</script>

@@ -33,7 +33,7 @@
         <h2>Наша команда</h2>
     </header>
     <div class="features">
-        <vc:list-of-workers max-priority="2" is-done="false"></vc:list-of-workers>
+        @await Component.InvokeAsync("ListOfWorkers")
     </div>
 </section>
 
@@ -43,7 +43,7 @@
     </header>
 </section>
 
-<vc:list-of-review max-priority="2" is-done="false"></vc:list-of-review>
+@await  Component.InvokeAsync("ListOfReview")
 
 @section scripts {
     <script>

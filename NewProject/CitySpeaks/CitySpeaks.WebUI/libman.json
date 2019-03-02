@@ -13,6 +13,11 @@
     {
       "library": "OwlCarousel2@2.3.4",
       "destination": "wwwroot/lib/OwlCarousel2/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "tinymce@5.0.1",
+      "destination": "wwwroot/lib/tinymce/"
     }
   ]
 }

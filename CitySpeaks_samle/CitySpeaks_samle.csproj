@@ -248,7 +248,7 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Programs.cs" />
     <Compile Include="Models\User\UserProgramsList.cs" />
-    <Compile Include="Models\User\AdminPagingHelpers.cs" />
+    <Compile Include="Models\User\UserPagingHelpers.cs" />
     <Compile Include="Models\User\UserNewsList.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Workers.cs" />

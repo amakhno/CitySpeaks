@@ -27,9 +27,29 @@ namespace CitySpeaks.WebUI.Controllers
         }
 
         [Route("/login")]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+        [HttpPost]
+        [Route("/login")]
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel, string ReturnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await Mediator.Send(new LoginUserCommand { UserName = loginViewModel.Email,
+                    Password = loginViewModel.Password });
+                if (result == null)
+                {
+                    ModelState.AddModelError("Password", "Cannot find user with this credentials");
+                    return View(loginViewModel);
+                }
+                await LogInWithCookies(result.UserName, result.RoleName);
+                return Redirect(ReturnUrl);
+            }
+            return View(loginViewModel);
         }
 
         [Route("/logout")]
@@ -47,16 +67,16 @@ namespace CitySpeaks.WebUI.Controllers
             {
                 CreateUserCommand createUserCommand = new CreateUserCommand()
                 {
-                    RegisterDto = new RegisterDto(model.Email, model.Password)
+                    RegisterDto = new LoginDto(model.Email, model.Password)
                 };
                 var userWithRoleNames = await Mediator.Send(createUserCommand);
-                await LogIn(userWithRoleNames.UserName, userWithRoleNames.RoleName);
+                await LogInWithCookies(userWithRoleNames.UserName, userWithRoleNames.RoleName);
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
         }
 
-        private async Task LogIn(string userName, string roleName)
+        private async Task LogInWithCookies(string userName, string roleName)
         {
             var claims = new List<Claim>
             {

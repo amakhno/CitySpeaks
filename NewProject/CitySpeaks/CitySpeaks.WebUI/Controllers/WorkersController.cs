@@ -61,7 +61,6 @@ namespace CitySpeaks.WebUI.Controllers
                 workerFromDb.Name = worker.Name;
                 workerFromDb.ShortDescription = worker.ShortDescription;
                 workerFromDb.FullDescription = worker.FullDescription;
-                context.Entry(workerFromDb).State = EntityState.Modified;
                 context.SaveChanges();
                 TempData["message"] = string.Format("Изменения в работнике \"{0}\" были сохранены", worker.Name);
                 return RedirectToAction("GetWorkersList", "Admin");
@@ -84,11 +83,9 @@ namespace CitySpeaks.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        public FileContentResult GetBigImage(int WorkersId)
+        public async Task<FileContentResult> GetBigImage(int workerId)
         {
-            Worker worker = _citySpeaksContext.Workers
-                .Include(x => x.SmallImage).Include(x => x.BigImage)
-                .FirstOrDefault(g => g.Id == WorkersId);
+            Worker worker = await Mediator.Send(new FindWorkerByIdQuery { Id = workerId });
 
             if (worker != null && worker.BigImage?.ImageData != null)
             {
@@ -122,7 +119,10 @@ namespace CitySpeaks.WebUI.Controllers
             {
                 return RedirectToAction("Index", "Admin");
             }
-            Worker worker = _citySpeaksContext.Workers.First(x => x.Id == id);
+            Worker worker = _citySpeaksContext.Workers
+                .Include(x => x.BigImage)
+                .Include(x => x.SmallImage)
+                .First(x => x.Id == id);
             return View(worker);
         }
 

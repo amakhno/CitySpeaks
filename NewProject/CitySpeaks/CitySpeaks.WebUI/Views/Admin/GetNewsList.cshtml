@@ -33,13 +33,13 @@
                     <td>@news.ShortDescription.Substring(0, 3)</td>
                     <td>
                         <a href="@Url.Action("Show", "News", new { id = news.NewsId })">
-                            <img src="~/Content/Show_Icon.png" style="height:20px" alt="" />
+                            <img src="~/img/Show_Icon.png" style="height:20px" alt="" />
                         </a>
                         <a href="@Url.Action("Delete", "News", new { id = news.NewsId })">
-                            <img src="~/Content/Delete_Icon.png" style="height:20px" alt="" />
+                            <img src="~/img/Delete_Icon.png" style="height:20px" alt="" />
                         </a>
                         <a href="@Url.Action("Edit", "News", new { id = news.NewsId })">
-                            <img src="~/Content/Edit_Icon.png" style="height:20px" alt="" />
+                            <img src="~/img/Edit_Icon.png" style="height:20px" alt="" />
                         </a>
                     <td>
                 </tr>
@@ -49,6 +49,6 @@
     <div>
         @Html.AdminPageLinks(Model.PagingInfo, x => Url.Action("GetNewsList", new { page = x }))
     </div>
-    @Html.ActionLink("Добавить новость", "Create", "News")
+    <a asp-controller="News" asp-action="Create">Добавить новость</a>
 </div>
 

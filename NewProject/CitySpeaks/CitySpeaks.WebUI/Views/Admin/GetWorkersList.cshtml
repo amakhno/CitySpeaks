@@ -1,0 +1,45 @@
+﻿@model List<Worker>
+
+@{
+    ViewBag.Title = "Список работников";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @if (TempData["message"] != null)
+    {
+        @TempData["message"]
+    }
+</p>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Worker workers in Model)
+            {
+                <tr>
+                    <td>@workers.Name</td>
+                    <td>
+                        <a asp-controller="Workers" asp-action="Show" asp-route-id="@workers.Id">
+                            <img src="~/img/Show_Icon.png" style="height:20px" alt="" />
+                        </a>
+                        <a asp-controller="Workers" asp-action="Delete" asp-route-id="@workers.Id">
+                            <img src="~/img/Delete_Icon.png" style="height:20px" alt="" />
+                        </a>
+                        <a asp-controller="Workers" asp-action="Edit" asp-route-id="@workers.Id">
+                            <img src="~/img/Edit_Icon.png" style="height:20px" alt="" />
+                        </a>
+                    <td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Добавить работника", "Create", "Workers")
+</div>
+

@@ -10,9 +10,9 @@ namespace CitySpeaks.Domain.Models
         public string ShortDescription { get; set; }
         public string FullDescription { get; set; }
         public DateTime Date { get; set; }
-        public byte[] BigImageData { get; set; }
-        public string BigImageMimeType { get; set; }
-        public byte[] SmallImageData { get; set; }
-        public string SmallImageMimeType { get; set; }
+        public int? SmallImageId { get; set; }
+        public int? BigImageId { get; set; }
+        public virtual Image SmallImage { get; set; }
+        public virtual Image BigImage { get; set; }
     }
 }

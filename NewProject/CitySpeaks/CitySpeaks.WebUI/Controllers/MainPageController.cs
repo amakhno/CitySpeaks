@@ -21,7 +21,7 @@ namespace CitySpeaks.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(MainPage mainPage, IFormFile image1, IFormFile image2)
+        public ActionResult Edit(MainPage mainPage, IFormFile image1, IFormFile image2)
         {
             if ((mainPage.Id != 0) && (_citySpeaksContext.MainPages.Where(c => c.Id == 1).FirstOrDefault() != null))
             {

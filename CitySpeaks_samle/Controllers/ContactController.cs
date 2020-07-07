@@ -36,7 +36,7 @@ namespace CitySpeaks_samle.Controllers
                     mail.Body = String.Format("Имя: {0}\nТелефон: {1}\nПочта: {2}\nСообщение:\n{3}", contact.Name, contact.PhoneNumber, contact.Mail, contact.Message);
                     SmtpClient client = new SmtpClient();
                     client.Host = "u0330659.plsk.regruhosting.ru";
-                    client.Port = 587;
+                    client.Port = 25;
                     client.EnableSsl = false;
                     client.Credentials = new NetworkCredential("mail@cityspeaks.ru".Split('@')[0], "167943As");
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
